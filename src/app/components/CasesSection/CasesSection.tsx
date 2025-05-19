@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { getImagePath } from '@/app/utils/paths.js';
 import styles from './CasesSection.module.css';
 
 const CasesSection: React.FC = () => {

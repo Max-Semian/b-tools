@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { getImagePath } from '@/app/utils/paths.js';
 import styles from './EventsSection.module.css';
 import Image from 'next/image';
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import { getImagePath } from '@/app/utils/paths.js';
 import styles from './TestimonialsCarousel.module.css';
 
 // Интерфейс для данных отзыва

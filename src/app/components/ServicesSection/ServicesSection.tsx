@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { getImagePath } from '@/app/utils/paths.js';
 import styles from './ServicesSection.module.css';
 
 const ServicesSection: React.FC = () => {

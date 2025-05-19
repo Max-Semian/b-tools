@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { getImagePath } from '@/app/utils/paths.js';
 import { useRouter } from "next/navigation";
 import styles from "./Header.module.css";
 import { useNavigation } from "@/app/hooks/useNavigation";

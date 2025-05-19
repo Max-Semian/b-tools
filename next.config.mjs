@@ -3,15 +3,13 @@ const nextConfig = {
   // Условная настройка basePath и assetPrefix
   ...(process.env.NODE_ENV === 'production' ? {
        // Используем функцию для определения режима
-  basePath: process.env.NODE_ENV === 'production' ? '/b-tools' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/b-tools/' : '',
+   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+   assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
   } : {}),
   
-  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
+  output: 'export',
   trailingSlash: true,
-  images: {
-    domains: ['max-semian.github.io'],
-    disableStaticImages: true,
+   images: {
     unoptimized: true,
   },
   eslint: {

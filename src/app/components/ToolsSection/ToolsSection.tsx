@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { getImagePath } from '@/app/utils/paths.js';
 import styles from './ToolsSection.module.css';
 
 const ToolsSection: React.FC = () => {

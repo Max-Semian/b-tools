@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { getImagePath } from '@/app/utils/paths.js';
 import styles from './TextBlock.module.css';
 
 interface TextBlockProps {
