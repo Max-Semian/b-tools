@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/b-tools',
-  assetPrefix: '/b-tools/',
-  output: 'export',
+  // Условная настройка basePath и assetPrefix
+  ...(process.env.NODE_ENV === 'production' ? {
+    basePath: '/b-tools',
+    assetPrefix: '/b-tools/',
+  } : {}),
+  
+  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
   trailingSlash: true,
   images: {
     unoptimized: true,

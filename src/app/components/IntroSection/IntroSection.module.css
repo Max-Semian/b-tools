@@ -1,0 +1,220 @@
+.section {
+  background-color: #f5f5f5;
+  padding: 80px 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1410px;
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
+.titleContainer {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 500;
+  color: #343434;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #343434;
+  margin: 0;
+}
+
+/* Карусель */
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carouselTrack {
+  display: flex;
+}
+
+.carouselItem {
+  flex-shrink: 0;
+  width: 460px; 
+  height: 583px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.card {
+  height: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 25px 30px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.cardLabel {
+  font-size: 12px;
+  color: #999;
+  font-weight: 400;
+}
+
+.iconContainer {
+  width: 80px;
+  height: 80px;
+  background-color: #FF0033;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1); /* Делаем иконку белой */
+}
+
+.cardTitle {
+  font-size: 28px;
+  font-weight: 500;
+  color: #343434;
+  margin: 0 0 20px 0;
+}
+
+.cardList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.cardList li {
+  position: relative;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #343434;
+  line-height: 1.5;
+}
+
+.cardList li:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #343434;
+}
+
+.cardNote {
+  font-size: 18px;
+  font-weight: 500;
+  color: #343434;
+  margin: 20px 0;
+  flex-grow: 1;
+}
+
+.cardButton {
+  background-color: #2B2D43;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  width: 388px;
+  height: 64px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.cardButton:hover {
+  background-color: #3a3c57;
+}
+
+/* Стили для красной карточки экстренной помощи */
+.emergencyCard {
+  background-color: #FF0033;
+  color: white;
+}
+
+.emergencyCard .cardTitle {
+  color: white;
+}
+
+.emergencyCard .cardList li {
+  color: white;
+}
+
+.emergencyCard .cardList li:before {
+  color: white;
+}
+
+.emergencyButton {
+  background-color: white !important;
+  color: #FF0033 !important;
+  border: none !important;
+}
+
+.emergencyButton:hover {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Адаптивность */
+@media (max-width: 1399px) {
+  .card {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .card {
+    padding: 20px;
+  }
+  
+  .iconContainer {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cardTitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 50px 0;
+  }
+  
+  .titleContainer {
+    margin-bottom: 30px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .card {
+    padding: 20px 15px;
+  }
+  
+  .navigation {
+    left: 0;
+    right: 0;
+  }
+}

@@ -1,0 +1,302 @@
+.contactSection {
+  width: 100%;
+  padding: 160px 0;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 1410px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 500;
+  color: #343434;
+  text-align: center;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+.contentWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 60px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.contactInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contactIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactText {
+  font-size: 18px;
+  font-weight: 500;
+  color: #343434;
+  text-decoration: none;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.socialLink {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #E4002B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.socialLink:hover {
+  background-color: #c30025;
+}
+
+.formContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formTitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: #343434;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.contactButton {
+  background-color: #E4002B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 48px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contactButton:hover {
+  background-color: #c30025;
+}
+
+/* Адаптивная верстка */
+@media (max-width: 1200px) {
+  .contentWrapper {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .contentWrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .contactInfo {
+    width: 100%;
+  }
+  
+  .formContainer {
+    width: 100%;
+    align-items: center;
+  }
+  
+  .formTitle {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 50px 0;
+  }
+  
+  .title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  
+  .contentWrapper {
+    padding: 30px;
+    gap: 30px;
+  }
+  
+  .contactItem {
+    gap: 20px;
+  }
+  
+  .contactIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .contactText {
+    font-size: 16px;
+  }
+  
+  .socialLink {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactSection {
+    padding: 30px 0;
+    background-color: white;
+  }
+  
+  .title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .contentWrapper {
+    flex-direction: column-reverse;
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+  }
+  
+  .contactInfo {
+    gap: 20px;
+  }
+  
+  .contactItem {
+    gap: 10px;
+  }
+  
+  .contactIcon {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+  }
+  
+  .contactText {
+    font-size: 14px;
+  }
+  
+  .formTitle {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .contactButton {
+    width: 100%;
+    padding: 14px 0;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .socialLinks {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 220px;
+  }
+  
+  .socialLink {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Специальные стили для 320px, основанные на предоставленном макете */
+@media (max-width: 320px) {
+  .contactSection {
+    padding: 20px 0;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  .title {
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 15px;
+  }
+  
+  .contentWrapper {
+    border-radius: 0;
+  }
+  
+  /* Переворачиваем порядок элементов как на макете */
+  .formContainer {
+    margin-top: 0;
+    align-items: flex-start;
+  }
+  
+  .formTitle {
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .contactButton {
+    margin-bottom: 20px;
+    border-radius: 4px;
+    padding: 12px 0;
+    font-size: 14px;
+  }
+  
+  .contactInfo {
+    gap: 15px;
+  }
+  
+  .contactItem {
+    gap: 8px;
+  }
+  
+  .contactIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .contactText {
+    font-size: 12px;
+  }
+  
+  .socialLinks {
+    margin-top: 10px;
+    max-width: 180px;
+  }
+  
+  .socialLink {
+    width: 32px;
+    height: 32px;
+  }
+}

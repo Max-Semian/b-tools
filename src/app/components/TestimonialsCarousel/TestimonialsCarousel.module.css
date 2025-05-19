@@ -1,0 +1,972 @@
+.testimonials {
+  padding: 160px 0;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.header {
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  margin-bottom: 40px;
+  width: 100%; /* Убедимся, что блок занимает всю ширину */
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 500;
+  text-align: center;
+  color: #343434;
+  margin: 0;
+  margin-right: 15px;
+}
+
+.redIcon {
+  width: 102px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carouselContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.carouselContainer::before, 
+.carouselContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* Чтобы не мешало взаимодействию с элементами */
+}
+
+.carouselContainer::before {
+  left: 0;
+  background: linear-gradient(to right, #f9f9f9 0%, rgba(249, 249, 249, 0) 100%);
+}
+
+.carouselContainer::after {
+  right: 0;
+  background: linear-gradient(to left, #f9f9f9 0%, rgba(249, 249, 249, 0) 100%);
+}
+
+.carousel {
+  width: 100%;
+  overflow: visible;
+  position: relative;
+}
+
+.track {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  padding: 20px 0;
+  justify-content: center;
+}
+
+.slide {
+  flex: 0 0 calc((100% - 40px) / 3);
+  max-width: calc((100% - 40px) / 3);
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  transform-origin: center;
+  opacity: 0.7;
+}
+
+/* Эффект увеличения активного слайда (центрального) */
+.slide:nth-child(2) {
+  transform: scale(1.05); /* Увеличиваем активный слайд */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Более заметная тень */
+  z-index: 2; /* Поверх других слайдов */
+  opacity: 1; /* Активный слайд полностью непрозрачный */
+}
+
+.testimonialCard {
+  position: relative;
+  height: 411px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.quoteIcon {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+.testimonialContent {
+  display: flex;
+  flex-direction: row; /* Изменено с column на row */
+  width: 100%;
+  padding-top: 40px;
+}
+
+.testimonialText {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #343434;
+  margin: 0;
+  flex: 1; /* Занимает доступное пространство */
+  max-width: 349px;
+  height: auto; /* Убрана фиксированная высота */
+  overflow: hidden;
+}
+
+.videoWrapper {
+  position: relative;
+  height: 180px;
+  margin-bottom: 0;
+  flex-shrink: 0; /* Предотвращает сжатие */
+  margin-right: 10px;
+}
+
+.testimonialVideo {
+  width: 199px;
+  height: 347px;
+  object-fit: cover;
+  margin-top: -40px;
+  margin-left: 33px;
+}
+
+.videoPlayButton {
+  position: absolute;
+  top: 132px;;
+  left: 126px;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(228, 0, 43, 0.8);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.videoPlayButton:hover {
+  background-color: rgba(228, 0, 43, 1);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.videoPlayButton.playing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.videoWrapper:hover .videoPlayButton.playing {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.videoPlayIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Добавляем красную полоску под видео */
+.videoIndicator {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 120px;
+  height: 4px;
+  background-color: #E4002B;
+  z-index: 1;
+}
+
+.testimonialAuthor {
+  position: absolute;
+  bottom: 30px;
+  left: 33px;
+}
+
+.authorName {
+  font-size: 18px;
+  font-weight: 500;
+  color: #343434;
+  margin: 0 0 3px;
+}
+
+.authorPosition {
+  font-size: 16px;
+  color: #343434;
+  opacity: 0.5;
+  margin: 0;
+}
+
+.authorCompany {
+  font-size: 16px;
+  color: #343434;
+  opacity: 0.5;
+  margin: 0;
+}
+
+.carouselNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.navButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+.carouselDots {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.carouselDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin: 0 5px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carouselDot.active {
+  background-color: #E4002B;
+  transform: scale(1.2);
+}
+
+
+
+/* Адаптивность */
+@media (max-width: 1640px) {
+  
+  .slide {
+    flex: 0 0 calc((100% - 30px) / 3);
+    max-width: calc((100% - 30px) / 3);
+  }
+  
+  .testimonialText {
+    max-width: 300px;
+    font-size: 12px;
+  }
+  
+  .testimonialVideo {
+    width: 180px;
+    height: 320px;
+  }
+  
+  .videoPlayButton {
+    top: 120px;
+    left: 110px;
+  }
+}
+
+/* Адаптив для ноутбуков и промежуточных разрешений */
+@media (min-width: 993px) and (max-width: 1366px) {
+  .testimonials {
+    padding: 120px 0;
+  }
+  
+  .title {
+    font-size: 42px;
+  }
+  
+  .redIcon {
+    width: 85px;
+    height: 48px;
+  }
+  
+  .slide {
+    flex: 0 0 calc((100% - 30px) / 3);
+    max-width: calc((100% - 30px) / 3);
+  }
+  
+  .testimonialCard {
+    height: 380px;
+    padding: 25px;
+  }
+  
+  .quoteIcon {
+    top: 25px;
+    left: 25px;
+    transform: scale(0.9);
+  }
+  
+  .testimonialContent {
+    padding-top: 35px;
+    gap: 10px; /* Уменьшаем отступ между текстом и видео */
+  }
+  
+  .testimonialText {
+    max-width: 240px; /* Уменьшаем максимальную ширину текста */
+    font-size: 12px;
+    line-height: 1.4;
+    margin-left: -15px; /* Компенсация для лучшего выравнивания */
+  }
+  
+  .videoWrapper {
+    height: 160px;
+  }
+  
+  .testimonialVideo {
+    width: 160px;
+    height: 280px;
+    margin-top: -35px;
+    margin-left: 20px;
+  }
+  
+  .videoPlayButton {
+    top: 110px;
+    left: 100px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .testimonialAuthor {
+    bottom: 25px;
+    left: 25px;
+  }
+  
+  .authorName {
+    font-size: 16px;
+  }
+  
+  .authorPosition,
+  .authorCompany {
+    font-size: 14px;
+  }
+  
+  /* Уменьшаем ширину градиентов по краям */
+  .carouselContainer::before, 
+  .carouselContainer::after {
+    width: 80px;
+  }
+}
+
+/* Дополнительно: оптимизация для маленьких ноутбуков и больших планшетов */
+@media (min-width: 993px) and (max-width: 1199px) {
+  .testimonialCard {
+    height: 360px;
+    padding: 20px;
+  }
+  
+  .quoteIcon {
+    top: 20px;
+    left: 20px;
+  }
+  
+  .testimonialContent {
+    padding-top: 30px;
+  }
+  
+  .testimonialText {
+    max-width: 200px;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  
+  .videoWrapper {
+    height: 150px;
+  }
+  
+  .testimonialVideo {
+    width: 140px;
+    height: 240px;
+    margin-top: -30px;
+    margin-left: 15px;
+  }
+  
+  .videoPlayButton {
+    top: 95px;
+    left: 85px;
+    width: 38px;
+    height: 38px;
+  }
+  
+  /* Немного уменьшаем масштаб активного слайда, чтобы он лучше вписывался */
+  .slide:nth-child(2) {
+    transform: scale(1.03);
+  }
+}
+
+/* Тонкая оптимизация для очень узких экранов ноутбуков */
+@media (min-width: 993px) and (max-width: 1080px) {
+  .testimonialText {
+    max-width: 180px;
+    font-size: 12px;
+  }
+  
+  .testimonialVideo {
+    width: 130px;
+    height: 220px;
+  }
+  
+  .videoPlayButton {
+    top: 85px;
+    left: 80px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .testimonials {
+    padding: 100px 0;
+  }
+  
+  .container {
+    max-width: 960px;
+  }
+  
+  .slide {
+    flex: 0 0 calc((100% - 20px) / 3);
+    max-width: calc((100% - 20px) / 3);
+  }
+  
+  .track {
+    gap: 10px;
+  }
+  
+  .testimonialCard {
+    height: 380px;
+    padding: 25px;
+  }
+  
+  .testimonialText {
+    max-width: 250px;
+    font-size: 14px;
+  }
+  
+  .testimonialVideo {
+    width: 160px;
+    height: 300px;
+    margin-left: 25px;
+  }
+  
+  .videoPlayButton {
+    top: 110px;
+    left: 100px;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .testimonialAuthor {
+    left: 25px;
+    bottom: 25px;
+  }
+  
+  .quoteIcon {
+    top: 25px;
+    left: 25px;
+  }
+  
+  .carouselContainer::before, 
+  .carouselContainer::after {
+    width: 100px;
+  }
+}
+
+/* Малые ноутбуки (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .testimonials {
+    padding: 80px 0;
+  }
+  
+  .container {
+    max-width: 900px;
+  }
+  
+  .title {
+    font-size: 32px;
+  }
+  
+  .redIcon {
+    width: 70px;
+    height: 40px;
+  }
+  
+  /* Переходим на 2 колонки */
+  .slide {
+    flex: 0 0 calc((100% - 15px) / 2);
+    max-width: calc((100% - 15px) / 2);
+  }
+  
+  /* Меняем отображение активного слайда */
+  .slide:nth-child(1) {
+    transform: scale(1.03);
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .slide:nth-child(2) {
+    transform: none;
+    opacity: 0.8;
+    z-index: 1;
+  }
+  
+  .slide:nth-child(3) {
+    display: none; /* Скрываем третий слайд */
+  }
+  
+  .track {
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .testimonialCard {
+    height: 350px;
+    padding: 20px;
+  }
+  
+  .quoteIcon {
+    top: 20px;
+    left: 20px;
+    transform: scale(0.8);
+  }
+  
+  .testimonialContent {
+    padding-top: 30px;
+    flex-direction: row;
+  }
+  
+  .testimonialText {
+    max-width: 180px;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  
+  .testimonialVideo {
+    width: 120px;
+    height: 220px;
+    margin-left: 10px;
+  }
+  
+  .videoPlayButton {
+    top: 80px;
+    left: 70px;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .testimonialAuthor {
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .authorName {
+    font-size: 14px;
+  }
+  
+  .authorPosition,
+  .authorCompany {
+    font-size: 12px;
+  }
+  
+  .carouselContainer::before, 
+  .carouselContainer::after {
+    width: 50px;
+  }
+}
+
+/* Планшеты (601px - 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .testimonials {
+    padding: 60px 0;
+  }
+  
+  .container {
+    max-width: 700px;
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+  
+  .redIcon {
+    width: 60px;
+    height: 35px;
+  }
+  
+  /* Один слайд на всю ширину */
+  .slide {
+    flex: 0 0 100%;
+    max-width: 450px;
+    opacity: 1;
+  }
+  
+  /* Отключаем эффекты масштаба для планшетов */
+  .slide:nth-child(1), 
+  .slide:nth-child(2) {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    z-index: 1;
+    opacity: 1;
+  }
+  
+  .track {
+    justify-content: center;
+  }
+  
+  .testimonialCard {
+    height: auto;
+    min-height: 320px;
+    padding: 20px;
+  }
+  
+  .testimonialContent {
+    flex-direction: row;
+    padding-top: 30px;
+  }
+  
+  .testimonialText {
+    max-width: 50%;
+    padding-left: 25px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  
+  .videoWrapper {
+    margin-left: 15px;
+  }
+  
+  .testimonialVideo {
+    width: 110px;
+    height: 200px;
+  }
+  
+  .videoPlayButton {
+    top: 70px;
+    left: 65px;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .testimonialAuthor {
+    bottom: 20px;
+    left: 45px;
+  }
+  
+  /* Убираем градиенты по краям на планшетах */
+  .carouselContainer::before, 
+  .carouselContainer::after {
+    display: none;
+  }
+}
+
+/* Малые планшеты и большие телефоны (481px - 600px) */
+@media (min-width: 481px) and (max-width: 600px) {
+  .testimonials {
+    padding: 50px 0;
+  }
+  
+  .container {
+    max-width: 550px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .redIcon {
+    width: 50px;
+    height: 30px;
+  }
+  
+  /* Один слайд на всю ширину */
+  .slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+    opacity: 1;
+  }
+  
+  .testimonialCard {
+    height: auto;
+    min-height: 300px;
+    padding: 15px;
+  }
+  
+  .quoteIcon {
+    top: 15px;
+    left: 15px;
+    transform: scale(0.7);
+  }
+  
+  .testimonialContent {
+    flex-direction: column;
+    padding-top: 25px;
+  }
+  
+  .testimonialText {
+    max-width: 100%;
+    padding-left: 20px;
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+  
+  .videoWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 110px;
+  }
+  
+  .testimonialVideo {
+    width: 90px;
+    height: 180px;
+    margin-left: 0;
+  }
+  
+  .videoPlayButton {
+    top: 55px;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .testimonialAuthor {
+    position: relative;
+    left: 20px;
+    bottom: auto;
+    margin-top: 15px;
+  }
+  
+  .navButton {
+    width: 30px;
+    height: 30px;
+  }
+}
+/* Дополнительные стили только для мобильных устройств (480px и меньше) */
+/* Дополнительные стили только для мобильных устройств (480px и меньше) */
+@media (max-width: 480px) {
+  .testimonials {
+    padding: 30px 0;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  .header {
+    margin-bottom: 15px;
+  }
+  
+  .title {
+    font-size: 22px;
+    margin-right: 8px;
+  }
+  
+  .redIcon {
+    width: 45px;
+    height: 24px;
+  }
+  
+  .redIcon img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Настройки карусели и слайдов */
+  .carouselContainer::before, 
+  .carouselContainer::after {
+    display: none; /* Убираем градиенты по бокам */
+  }
+  
+  .track {
+    gap: 0;
+    padding: 0;
+  }
+  
+  /* На мобильной версии показываем только один слайд */
+  .slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  /* Скрыть все слайды, кроме активного */
+  .slide:not(:nth-child(1)) {
+    display: none;
+  }
+  
+  .testimonialCard {
+    height: auto;
+    padding: 20px 15px;
+  }
+  
+  .quoteIcon {
+    top: 15px;
+    left: 15px;
+    transform: scale(0.8);
+  }
+  
+  /* Переопределяем направление контента для мобильной версии */
+  .testimonialContent {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .testimonialText {
+    font-size: 14px;
+    line-height: 1.4;
+    max-width: 100%;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    order: 0; /* Текст всегда первый */
+  }
+  
+  .videoWrapper {
+    margin-top: 15px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    order: 1; /* Видео всегда второе */
+    position: relative;
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+  
+  .testimonialVideo {
+    width: 244px;
+    height: 242px;
+    border-radius: 5px;
+    margin-top: 0;
+    margin-left: 0;
+  }
+  
+  .videoPlayButton {
+    width: 44px;
+    height: 44px;
+    top: 50%;
+    left: 50%;
+  }
+  
+  .videoPlayIcon svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .testimonialAuthor {
+    position: static;
+    margin-top: 15px;
+    padding-left: 10px;
+    order: 2; /* Автор всегда третий */
+  }
+  
+  .authorName {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  
+  .authorPosition, 
+  .authorCompany {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  
+  .carouselNavigation {
+    margin-top: 15px;
+  }
+  
+  .navButton {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .navButton svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .carouselDot {
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+  }
+}
+
+/* Специальные настройки для 320px */
+@media (max-width: 320px) {
+  .testimonials {
+    padding: 20px 0;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .redIcon {
+    width: 40px;
+    height: 22px;
+  }
+  
+  .testimonialCard {
+    padding: 15px 12px;
+  }
+  
+  .quoteIcon {
+    transform: scale(0.7);
+  }
+  
+  .testimonialText {
+    order: 0; /* Текст остаётся первым */
+  }
+
+  .testimonialAuthor {
+    order: 1; /* Автор теперь второй (между текстом и видео) */
+  }
+
+  .videoWrapper {
+    order: 2; /* Видео теперь последнее */
+  }
+
+  .testimonialText {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  
+  .testimonialVideo {
+    width: 244px;
+    height: 242px;
+  }
+  
+  .videoPlayButton {
+    width: 40px;
+    height: 40px;
+  }
+}

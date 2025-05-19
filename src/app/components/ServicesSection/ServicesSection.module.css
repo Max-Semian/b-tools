@@ -1,0 +1,169 @@
+.servicesSection {
+  padding: 20px 0;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 1410px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #343434;
+}
+
+.servicesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.serviceItem {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.serviceItem:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.serviceItem.active {
+  background-color: #f5f5f5;
+}
+
+.serviceHeader {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.serviceIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #E4002B;
+  border-radius: 50%;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.iconNumber {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.serviceTitle {
+  flex-grow: 1;
+  font-size: 28px;
+  font-weight: 500;
+  color: #343434;
+  margin: 0;
+}
+
+.expandButton {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #666;
+  transform: translateY(-2px);
+}
+.serviceContent {
+  padding: 0 20px 20px 67px;
+  animation: fadeIn 0.3s ease;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.serviceDescription {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 0; /* Убираем нижний отступ */
+  flex: 1; /* Занимает доступное пространство */
+  margin-right: 20px; /* Отступ от кнопки */
+}
+
+.detailButton {
+  background-color: #343434;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 20px;
+  font-size: 17px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Предотвращает сжатие кнопки */
+}
+
+.detailButton:hover {
+  background-color: #221845;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .serviceHeader {
+    padding: 15px;
+  }
+  
+  .serviceContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .serviceTitle {
+    font-size: 16px;
+  }
+  
+  .serviceDescription {
+    margin-right: 0;
+    margin-bottom: 20px; /* Возвращаем отступ на мобильных */
+    width: 100%;
+  }
+  .detailButton {
+    align-self: flex-end; /* Выравниваем кнопку справа на мобильных */
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,494 @@
+.toolsSection {
+  padding: 80px 0;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 1410px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 500;
+  color: #343434;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.circleIcon {
+  width: 102px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #343434;
+  margin-bottom: 40px;
+  max-width: 692px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toolsGrid {
+  display: grid;
+  grid-template-columns: 334px 701px 334px;
+  gap: 19px;
+}
+
+/* Переопределение сетки с точным размещением каждого элемента */
+.bitrix {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 334px;
+}
+
+.kommo {
+  grid-column: 2;
+  grid-row: 1;
+  width: 701px;
+  background-color: #EBEAEA;
+}
+
+.albato {
+  grid-column: 3;
+  grid-row: 1;
+  width: 334px;
+}
+
+.zadarma {
+  grid-column: 2;
+  grid-row: 2;
+  width: 701px;
+  background-color: #EBEAEA;
+}
+
+.keepincrm {
+  grid-column: 3;
+  grid-row: 2;
+  width: 334px;
+}
+
+/* Создаем специальную сетку для нижнего ряда */
+.bottomRow {
+  grid-column: 1 / span 3;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: repeat(4, 334px);
+  gap: 15px;
+  width: 100%;
+}
+
+.keycrm {
+  grid-column: 1;
+  width: 334px;
+}
+
+.perfectum {
+  grid-column: 2;
+  width: 334px;
+}
+
+.onebox {
+  grid-column: 3;
+  width: 334px;
+}
+
+.zoho {
+  grid-column: 4;
+  width: 334px;
+}
+
+/* Базовый стиль для карточек */
+.toolCard {
+  background-color: white;
+  height: 212px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 20px;
+}
+
+.toolCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Специфичные стили для Bitrix 24 */
+.bitrix {
+  background-color: #262a3d;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  height: 100%;
+  /* padding: 0 !important; */
+}
+
+.bitrix .logoImage {
+  width: 191px !important;
+  height: auto;
+  margin-top: 40px;
+  margin-left: 33px;
+}
+
+.bitrix .toolDescription {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 20px 7px;
+}
+
+.bitrix .detailButton {
+  background-color: white;
+  color: #262a3d;
+  border-radius: 8px;
+  padding: 22px 41px;
+  font-weight: 400;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Специфичные стили для Kommo */
+.kommo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px 45px; /* Увеличены отступы снаружи */
+  background-color: #EBEAEA; /* Светло-серый фон */
+}
+
+.kommo .toolLogo {
+  width: 100px; /* Увеличена ширина контейнера логотипа */
+  height: 100px; /* Добавлена высота контейнера логотипа */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 48px; /* Увеличен отступ между логотипом и текстом */
+  margin-top: 41px;
+}
+
+.kommo .logoImage {
+  width: 211px; /* Задана ширина изображения логотипа */
+  height: auto;
+}
+
+.kommo .toolContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 140px;
+}
+
+.kommo .toolName {
+  color: #343434;
+  font-size: 28px; /* Увеличен размер шрифта */
+  font-weight: 500;
+  margin: 0 0 15px 0; /* Увеличен отступ снизу */
+  text-align: right;
+}
+
+.kommo .toolDescription {
+  font-size: 18px; /* Увеличен размер шрифта */
+  color: #343434; /* Немного темнее цвет текста */
+  margin-bottom: 16px; /* Увеличен отступ снизу */
+  opacity: 0.8;
+  margin-top: -6px;
+  line-height: 1.4; /* Добавлен межстрочный интервал */
+}
+
+.kommo .detailButton {
+  background-color: #262a3d;
+  color: white;
+  font-size: 16px; /* Увеличен размер шрифта */
+  padding: 22px 41px; /* Увеличены внутренние отступы */
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500; /* Уменьшен вес шрифта */
+}
+
+/* Специфичные стили для Zadarma */
+.zadarma {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px 45px; /* Увеличены отступы снаружи */
+  background-color: #EBEAEA; /* Светло-серый фон */
+}
+
+.zadarma .toolLogo {
+  width: 100px; /* Увеличена ширина контейнера логотипа */
+  height: 100px; /* Добавлена высота контейнера логотипа */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 48px; /* Увеличен отступ между логотипом и текстом */
+  margin-top: 20px;
+}
+
+.zadarma .logoImage {
+  width: 211px; /* Задана ширина изображения логотипа */
+  height: auto;
+}
+
+.zadarma .toolContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 140px;
+}
+
+.zadarma .toolName {
+  color: #343434;
+  font-size: 28px; /* Увеличен размер шрифта */
+  font-weight: 500;
+  margin: 0 0 15px 0; /* Увеличен отступ снизу */
+  text-align: right;
+}
+
+.zadarma .toolDescription {
+  font-size: 18px; /* Увеличен размер шрифта */
+  color: #343434; /* Немного темнее цвет текста */
+  margin-bottom: 16px; /* Увеличен отступ снизу */
+  opacity: 0.8;
+  margin-top: -6px;
+  line-height: 1.4; /* Добавлен межстрочный интервал */
+}
+
+/* Стили для Albato и KeepinCRM */
+.albato, .keepincrm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Стили для стандартных карточек в нижнем ряду */
+.keycrm,
+.perfectum,
+.onebox,
+.zoho {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.keycrm .toolLogo,
+.perfectum .toolLogo,
+.onebox .toolLogo,
+.zoho .toolLogo {
+  margin-bottom: 20px;
+}
+
+.toolLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.logoImage {
+  object-fit: contain;
+}
+
+.toolName {
+  font-size: 28px;
+  font-weight: 500;
+  color: #343434;
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+.bottomRow {
+  grid-column: 1 / span 3;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: repeat(4, 334px);
+  gap: 23px; /* Отступ между карточками в нижнем ряду */
+  width: 100%;
+}
+
+/* Адаптивность */
+@media (max-width: 1440px) {
+  .toolsGrid {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  .bitrix, .albato, .keepincrm, 
+  .keycrm, .perfectum, .onebox, .zoho {
+    width: 100%;
+  }
+
+  .kommo, .zadarma {
+    width: 100%;
+  }
+
+  .bottomRow {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .toolsGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .bottomRow {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .zoho {
+    grid-column: 1 / span 3;
+    width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .toolsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bitrix {
+    grid-row: 1 / span 2;
+  }
+
+  .kommo {
+    grid-column: 2;
+  }
+
+  .albato {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .zadarma {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .keepincrm {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .bottomRow {
+    grid-column: 1 / span 2;
+    grid-row: 4;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .keycrm {
+    grid-column: 1;
+  }
+
+  .perfectum {
+    grid-column: 2;
+  }
+
+  .onebox {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .zoho {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .toolsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bitrix {
+    grid-column: 1;
+    grid-row: 1;
+    height: auto;
+    padding: 30px 20px;
+  }
+
+  .kommo {
+    grid-column: 1;
+    grid-row: 2;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .zadarma {
+    grid-column: 1;
+    grid-row: 3;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .albato {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .keepincrm {
+    grid-column: 1;
+    grid-row: 5;
+  }
+
+  .bottomRow {
+    grid-column: 1;
+    grid-row: 6;
+    grid-template-columns: 1fr;
+  }
+
+  .keycrm, .perfectum, .onebox, .zoho {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .kommo .toolLogo, .zadarma .toolLogo {
+    width: auto;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .kommo .toolContent, .zadarma .toolContent {
+    align-items: center;
+  }
+
+  .kommo .toolName, .zadarma .toolName {
+    text-align: center;
+  }
+}
