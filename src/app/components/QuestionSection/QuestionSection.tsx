@@ -30,7 +30,7 @@ const QuestionBlock: React.FC = () => {
                 <div className={styles.inputWrapper}>
                     <div className={styles.avatar}>
                     <Image 
-                        src="/images/questionIcon.png"
+                        src="images/questionIcon.png"
                         alt="Консультант"
                         width={36}
                         height={36}
@@ -57,7 +57,7 @@ const QuestionBlock: React.FC = () => {
             <div className={styles.imageWrapper}>
               <div className={styles.imageCircle1}>
                 <Image 
-                  src="/images/question1.png"
+                  src="images/question1.png"
                   alt="Консультант"
                   width={500}
                   height={500}
@@ -66,7 +66,7 @@ const QuestionBlock: React.FC = () => {
               </div>
               <div className={styles.imageCircle2}>
                 <Image 
-                  src="/images/question2.png"
+                  src="images/question2.png"
                   alt="Команда"
                   width={500}
                   height={500}

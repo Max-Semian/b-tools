@@ -33,7 +33,7 @@ const ConsultationForm: React.FC = () => {
             
             <div className={styles.arrow}>
               <Image 
-                src="/images/FormIcon.png"
+                src="images/FormIcon.png"
                 alt="Стрелка"
                 width={80}
                 height={60}
@@ -43,7 +43,7 @@ const ConsultationForm: React.FC = () => {
             <div className={styles.featuresBlock}>
               <p className={styles.featuresTitle}>
                 <Image 
-                    src="/images/skrepka.svg"
+                    src="images/skrepka.svg"
                     alt="Скрепка"
                     width={20}
                     height={20}
@@ -66,7 +66,7 @@ const ConsultationForm: React.FC = () => {
             <div className={styles.imagesContainer}>
               <div className={styles.personImage}>
                 <Image 
-                  src="/images/zayavka.png"
+                  src="images/zayavka.png"
                   alt="Команда консультантов"
                   width={256}
                   height={391}
@@ -76,7 +76,7 @@ const ConsultationForm: React.FC = () => {
               
               <div className={styles.documentImage}>
                 <Image 
-                  src="/images/zayavka1.png"
+                  src="images/zayavka1.png"
                   alt="Документ"
                   width={235}
                   height={304}

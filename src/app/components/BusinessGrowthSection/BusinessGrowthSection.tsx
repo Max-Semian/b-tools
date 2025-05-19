@@ -56,7 +56,7 @@ const BusinessGrowthSection = () => {
             <div className={styles.imagesContainer}>
               <div className={styles.imageWrapper}>
                 <Image 
-                  src="/images/image.jpg" 
+                  src="images/image.jpg" 
                   alt="Специалист работает за ноутбуком" 
                   width={280} 
                   height={450} 
@@ -65,7 +65,7 @@ const BusinessGrowthSection = () => {
               </div>
               <div className={styles.imageWrapper}>
                 <Image 
-                  src="/images/image2.jpg" 
+                  src="images/image2.jpg" 
                   alt="Консультация по продажам" 
                   width={280} 
                   height={450} 

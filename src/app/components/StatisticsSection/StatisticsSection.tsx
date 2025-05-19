@@ -48,7 +48,7 @@ const StatisticsSection: React.FC = () => {
           <div className={styles.authorContainer}>
             <div className={styles.authorImageContainer}>
               <img 
-                src="/images/statisticsImage.png" 
+                src="images/statisticsImage.png" 
                 alt="Витольд Ануш" 
                 className={styles.authorImage}
                 onError={(e) => {

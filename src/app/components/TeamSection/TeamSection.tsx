@@ -12,21 +12,21 @@ const TeamSection: React.FC = () => {
       id: 1,
       name: 'Павел Адамович',
       position: 'Со-основатель B-Tools',
-      image: '/images/Pavel.jpg',
+      image: 'images/Pavel.jpg',
       isQuoteAuthor: true
     },
     {
       id: 2,
       name: 'Анна Корчака',
       position: 'Со-основатель B-Tools',
-        image: '/images/Anna.jpg',
+        image: 'images/Anna.jpg',
       isQuoteAuthor: false
     },
     {
       id: 3,
       name: 'Витольд Ануш',
       position: 'Бизнес-тренер',
-      image: '/images/Vitold.jpg',
+      image: 'images/Vitold.jpg',
       isQuoteAuthor: false
     },
     {
@@ -51,7 +51,7 @@ const TeamSection: React.FC = () => {
           <div className={styles.quoteAuthor}>
             <div className={styles.authorAvatar}>
               <Image 
-                src="/images/image12.jpg"
+                src="images/image12.jpg"
                 alt="Павел Адамович"
                 width={40}
                 height={40}

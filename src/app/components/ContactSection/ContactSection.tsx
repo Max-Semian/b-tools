@@ -16,7 +16,7 @@ const ContactSection: React.FC = () => {
             <div className={styles.contactItem}>
               <div className={styles.contactIcon}>
                 <img 
-                    src="/images/phone.svg"
+                    src="images/phone.svg"
                     alt="Инструменты"
                     width={15}
                     height={18}
@@ -29,7 +29,7 @@ const ContactSection: React.FC = () => {
             <div className={styles.contactItem}>
               <div className={styles.contactIcon}>
                 <img 
-                    src="/images/mail.svg"
+                    src="images/mail.svg"
                     alt="Инструменты"
                     width={20}
                     height={13}
@@ -42,7 +42,7 @@ const ContactSection: React.FC = () => {
             <div className={styles.socialLinks}>
               <a href="#" className={styles.socialLink}>
                 <img 
-                    src="/images/insta.svg"
+                    src="images/insta.svg"
                     alt="Инструменты"
                     width={60}
                     height={60}
@@ -51,7 +51,7 @@ const ContactSection: React.FC = () => {
               </a>
               <a href="#" className={styles.socialLink}>
                 <img 
-                    src="/images/telega.svg"
+                    src="images/telega.svg"
                     alt="Инструменты"
                     width={60}
                     height={60}
@@ -60,7 +60,7 @@ const ContactSection: React.FC = () => {
               </a>
               <a href="#" className={styles.socialLink}>
                 <img 
-                    src="/images/whatsup.svg"
+                    src="images/whatsup.svg"
                     alt="Инструменты"
                     width={60}
                     height={60}
@@ -69,7 +69,7 @@ const ContactSection: React.FC = () => {
               </a>
               <a href="#" className={styles.socialLink}>
                 <img 
-                    src="/images/email.svg"
+                    src="images/email.svg"
                     alt="Инструменты"
                     width={60}
                     height={60}
@@ -90,7 +90,7 @@ const ContactSection: React.FC = () => {
             <div className={styles.contactItemRight}>
               <div className={styles.contactIcon}>
                 <img 
-                    src="/images/location.svg"
+                    src="images/location.svg"
                     alt="Инструменты"
                     width={16}
                     height={23}
@@ -103,7 +103,7 @@ const ContactSection: React.FC = () => {
             <div className={styles.contactItem}>
               <div className={styles.contactIcon}>
                 <img 
-                    src="/images/clock.svg"
+                    src="images/clock.svg"
                     alt="Инструменты"
                     width={20}
                     height={19}

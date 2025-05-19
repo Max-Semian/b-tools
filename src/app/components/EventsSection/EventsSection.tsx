@@ -10,7 +10,7 @@ const EventsSection: React.FC = () => {
   const events = [
     {
       id: 1,
-      image: '/images/eventSection-1.jpg',
+      image: 'images/eventSection-1.jpg',
       alt: 'Аудитория слушает презентацию',
       text: 'Lorem ipsum is simply dummy text',
       aspectRatio: '4/3',
@@ -18,7 +18,7 @@ const EventsSection: React.FC = () => {
     },
     {
       id: 2,
-      image: '/images/eventSection-2.jpg',
+      image: 'images/eventSection-2.jpg',
       alt: 'Группа людей за столом обсуждает проект',
       text: 'Lorem ipsum is simply dummy text',
       aspectRatio: '16/9',
@@ -26,7 +26,7 @@ const EventsSection: React.FC = () => {
     },
     {
       id: 3,
-      image: '/images/eventSection-3.jpg',
+      image: 'images/eventSection-3.jpg',
       alt: 'Выступление на бизнес-семинаре',
       text: 'Lorem ipsum is simply dummy text',
       aspectRatio: '1/1',
@@ -34,7 +34,7 @@ const EventsSection: React.FC = () => {
     },
     {
       id: 4,
-      image: '/images/eventSection-1.jpg',
+      image: 'images/eventSection-1.jpg',
       alt: 'Деловая встреча',
       text: 'Lorem ipsum is simply dummy text',
       aspectRatio: '3/4',
@@ -42,7 +42,7 @@ const EventsSection: React.FC = () => {
     },
     {
       id: 5,
-      image: '/images/eventSection-2.jpg', 
+      image: 'images/eventSection-2.jpg', 
       alt: 'Корпоративное обучение',
       text: 'Lorem ipsum is simply dummy text',
       aspectRatio: '16/10',
@@ -146,7 +146,7 @@ const EventsSection: React.FC = () => {
         <div className={styles.header}>
           <h2 className={styles.title}>НАШИ СОБЫТИЯ</h2>
           <img 
-            src="/images/event-Icon.svg" 
+            src="images/event-Icon.svg" 
             alt="События" 
             className={styles.eventIcon}
           />

@@ -25,8 +25,8 @@ const TestimonialsCarousel: React.FC = () => {
       position: 'Руководитель компании',
       company: 'PRODUCT PRO',
       text: 'Я очень доволен результатами: продажи увеличились примерно в четыре раза за месяц, и теперь у меня есть четкое понимание, как обучать новых сотрудников. Рекомендую компанию B-Tools как профессионалов в области настройки и оптимизации отделов продаж.',
-      videoUrl: '/videos/testimonial-1.mp4',
-      posterUrl: '/images/reviews.jpg'
+      videoUrl: 'videos/testimonial-1.mp4',
+      posterUrl: 'images/reviews.jpg'
     },
     {
       id: 2,
@@ -34,8 +34,8 @@ const TestimonialsCarousel: React.FC = () => {
       position: 'Руководитель компании',
       company: 'PRODUCT PRO',
       text: 'Я очень доволен результатами: продажи увеличились примерно в четыре раза за месяц, и теперь у меня есть четкое понимание, как обучать новых сотрудников. Рекомендую компанию B-Tools как профессионалов в области настройки и оптимизации отделов продаж.',
-      videoUrl: '/videos/testimonial-2.mp4',
-      posterUrl: '/images/reviews.jpg'
+      videoUrl: 'videos/testimonial-2.mp4',
+      posterUrl: 'images/reviews.jpg'
     },
     {
       id: 3,
@@ -43,8 +43,8 @@ const TestimonialsCarousel: React.FC = () => {
       position: 'Руководитель компании',
       company: 'WORKEIN',
       text: 'Я очень доволен результатами: продажи увеличились примерно в четыре раза за месяц, и теперь у меня есть четкое понимание, как обучать новых сотрудников. Рекомендую компанию B-Tools как профессионалов в области настройки и оптимизации отделов продаж.',
-      videoUrl: '/videos/testimonial-3.mp4',
-      posterUrl: '/images/reviews.jpg'
+      videoUrl: 'videos/testimonial-3.mp4',
+      posterUrl: 'images/reviews.jpg'
     },
     {
       id: 4,
@@ -52,8 +52,8 @@ const TestimonialsCarousel: React.FC = () => {
       position: 'Руководитель компании',
       company: 'PRODUCT PRO',
       text: 'Я очень доволен результатами: продажи увеличились примерно в четыре раза за месяц, и теперь у меня есть четкое понимание, как обучать новых сотрудников. Рекомендую компанию B-Tools как профессионалов в области настройки и оптимизации отделов продаж.',
-      videoUrl: '/videos/testimonial-4.mp4',
-      posterUrl: '/images/reviews.jpg'
+      videoUrl: 'videos/testimonial-4.mp4',
+      posterUrl: 'images/reviews.jpg'
     }
   ];
 
@@ -170,7 +170,7 @@ const TestimonialsCarousel: React.FC = () => {
           <h2 className={styles.title}>ЧТО КЛИЕНТЫ ГОВОРЯТ О НАС</h2>
           <div className={styles.redIcon}>
             <Image 
-              src="/images/reviews.png"
+              src="images/reviews.png"
               alt="Отзывы"
               width={102}
               height={56}

@@ -34,7 +34,7 @@ const GuaranteesSection: React.FC = () => {
           <video 
             ref={videoRef}
             className={styles.video}
-            poster="/images/video-poster.jpg" // Изображение для предпросмотра видео (замените на своё)
+            poster="images/video-poster.jpg" // Изображение для предпросмотра видео (замените на своё)
             preload="metadata"
           >
             <source src="/videos/guarantees-video.mp4" type="video/mp4" />

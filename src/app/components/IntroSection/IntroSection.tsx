@@ -10,7 +10,7 @@ const IntroSection = () => {
   const cards = [
     {
       id: 1,
-      icon: "/images/news_line.svg",
+      icon: "images/news_line.svg",
       title: "Продающий эксперт",
       label: "Новичок",
       list: [
@@ -21,7 +21,7 @@ const IntroSection = () => {
     },
     {
       id: 2,
-      icon: "/images/briefcase_2_line.svg",
+      icon: "images/briefcase_2_line.svg",
       title: "Молодая компания",
       label: "Босс",
       list: [
@@ -33,7 +33,7 @@ const IntroSection = () => {
     },
     {
       id: 3,
-      icon: "/images/building_5_line.svg",
+      icon: "building_5_line.svg",
       title: "Зрелая компания с отделом продаж",
       label: "ЧП",
       list: [
@@ -47,7 +47,7 @@ const IntroSection = () => {
     },
     {
       id: 4,
-      icon: "/images/building_5_line.svg",
+      icon: "images/building_5_line.svg",
       title: "Нужна экстренная помощь!",
       label: "ЧП",
       list: [

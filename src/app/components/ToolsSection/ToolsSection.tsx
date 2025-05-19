@@ -11,7 +11,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 1,
       name: 'Bitrix 24',
-      logo: '/images/bitrix24.svg', // Убедитесь, что файл существует
+      logo: 'images/bitrix24.svg', // Убедитесь, что файл существует
       description: 'Многозадачность и интеграция с командными коммуникациями',
       isFeatured: true,
       hasButton: true,
@@ -20,7 +20,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 2,
       name: 'Kommo',
-      logo: '/images/kommo1.svg', // Обновленный красный логотип
+      logo: 'images/kommo1.svg', // Обновленный красный логотип
       description: 'Продвинутые воронки продаж и кастомизация клиентских путей',
       isFeatured: true,
       hasButton: true,
@@ -29,7 +29,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 3,
       name: 'Albato',
-      logo: '/images/albato1.svg', // Красный логотип
+      logo: 'images/albato1.svg', // Красный логотип
       description: '',
       isFeatured: true,
       hasButton: false,
@@ -38,7 +38,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 4,
       name: 'Zadarma',
-      logo: '/images/zadarma.svg', // Красный логотип
+      logo: 'images/zadarma.svg', // Красный логотип
       description: 'Интеграция IP-телефонии',
       isFeatured: true,
       hasButton: false,
@@ -47,7 +47,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 5,
       name: 'KeepinCRM',
-      logo: '/images/keepincrm.svg', // Красный логотип
+      logo: 'images/keepincrm.svg', // Красный логотип
       description: '',
       isFeatured: true,
       hasButton: false,
@@ -56,7 +56,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 6,
       name: 'KeyCRM',
-      logo: '/images/keycrm.svg', // Красный логотип
+      logo: 'images/keycrm.svg', // Красный логотип
       description: '',
       isFeatured: false,
       hasButton: false,
@@ -65,7 +65,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 7,
       name: 'Perfectum',
-      logo: '/images/perfectum.svg', // Красный логотип
+      logo: 'images/perfectum.svg', // Красный логотип
       description: '',
       isFeatured: false,
       hasButton: false,
@@ -74,7 +74,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 8,
       name: 'OneBox',
-      logo: '/images/onebox.svg', // Красный логотип
+      logo: 'images/onebox.svg', // Красный логотип
       description: '',
       isFeatured: false,
       hasButton: false,
@@ -83,7 +83,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 9,
       name: 'ZOHO CRM',
-      logo: '/images/zoho.svg', // Красный логотип
+      logo: 'images/zoho.svg', // Красный логотип
       description: '',
       isFeatured: false,
       hasButton: false,
@@ -98,7 +98,7 @@ const ToolsSection: React.FC = () => {
         <h2 className={styles.title}>ИНСТРУМЕНТЫ</h2>
         <div className={styles.circleIcon}>
           <img 
-            src="/images/tools.png"
+            src="images/tools.png"
             alt="Инструменты"
             width={102}
             height={56}

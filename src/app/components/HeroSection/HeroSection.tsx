@@ -23,7 +23,7 @@ const HeroSection: React.FC = () => {
     <section className={styles.heroSection} id="услуги">
       <div className={styles.backgroundContainer}>
         <Image 
-          src="/images/first-block-bg1.jpg"
+          src="images/first-block-bg1.jpg"
           alt="Фон командной работы"
           fill
           priority
@@ -38,7 +38,7 @@ const HeroSection: React.FC = () => {
             ПОВЫШАЕМ 
             <span className={styles.iconWrapper}>
               <Image 
-                src="/images/Frame 533.png"
+                src="images/Frame 533.png"
                 alt="Иконка графика"
                 width={123}
                 height={63.26}

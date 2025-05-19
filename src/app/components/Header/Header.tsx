@@ -85,7 +85,7 @@ const Header = () => {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          <img src="/images/logo-b-tools.png" alt="B-Tools" />
+          <img src="images/logo-b-tools.png" alt="B-Tools" />
         </Link>
         
         <nav className={styles.desktopNav}>
@@ -111,7 +111,7 @@ const Header = () => {
         <div className={styles.rightActions}>
           <button className={styles.themeToggle}>
             <img 
-              src="/images/phone-icon.png" 
+              src="images/phone-icon.png" 
               alt="Phone" 
               width={19} 
               height={19} 
