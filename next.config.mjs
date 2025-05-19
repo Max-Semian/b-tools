@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/b-tools',
-  assetPrefix: '/b-tools/',
+  basePath: '',
+  assetPrefix: '',
   output: 'export',
   trailingSlash: true,
   images: {
