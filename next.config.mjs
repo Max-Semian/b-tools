@@ -2,14 +2,13 @@
 const nextConfig = {
   // Условная настройка basePath и assetPrefix
   ...(process.env.NODE_ENV === 'production' ? {
-       // Используем функцию для определения режима
-   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-   assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
+    basePath: '/b-tools',
+    assetPrefix: '/b-tools/',
   } : {}),
   
-  output: 'export',
+  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
   trailingSlash: true,
-   images: {
+  images: {
     unoptimized: true,
   },
   eslint: {
@@ -31,14 +30,6 @@ const nextConfig = {
       config.optimization = config.optimization || {};
       config.optimization.splitChunks = config.optimization.splitChunks || {};
       config.optimization.splitChunks.cacheGroups = config.optimization.splitChunks.cacheGroups || {};
-
-      // Now it's safe to set the property
-      config.optimization.splitChunks.cacheGroups.enhance = {
-        test: /enhance\.ts$/,
-        name: 'enhance',
-        chunks: 'all',
-        enforce: true,
-      };
     }
     return config;
   }

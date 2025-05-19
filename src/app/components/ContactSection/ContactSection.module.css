@@ -1,5 +1,5 @@
 .contactSection {
-  width: 100%;
+  max-width: auto;
   padding: 160px 0;
   background-color: #f9f9f9;
 }
@@ -15,7 +15,7 @@
   font-weight: 500;
   color: #343434;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   text-transform: uppercase;
 }
 
@@ -24,30 +24,29 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 60px;
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 60px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .contactInfo {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 .contactItem {
   display: flex;
   align-items: center;
-  gap: 15px;
+}
+.contactItemRight {
+  display: flex;
+  align-items: center;
+  margin-top: 105px;
+  margin-bottom: 20px;
 }
 
 .contactIcon {
-  width: 48px;
-  height: 48px;
   border-radius: 50%;
-  background-color: #f0f0f0;
+  margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,12 +62,12 @@
 .socialLinks {
   display: flex;
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 75px;
 }
 
 .socialLink {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-color: #E4002B;
   display: flex;
@@ -101,7 +100,7 @@
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 16px 48px;
+  padding: 22px 41px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;

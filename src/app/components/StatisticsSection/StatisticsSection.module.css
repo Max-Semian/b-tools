@@ -1,9 +1,9 @@
 .section {
   width: 100%;
-  max-width: 1920px;
+  max-width: auto;
   height: 585px;
   margin: 0 auto;
-  background-color: #1C1F32;
+  background-color: #2B2D43;
   color: white;
   display: flex;
   align-items: center;

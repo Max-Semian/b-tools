@@ -87,13 +87,13 @@ const ContactSection: React.FC = () => {
             <button className={styles.contactButton}>
               Связаться
             </button>
-            <div className={styles.contactItem}>
+            <div className={styles.contactItemRight}>
               <div className={styles.contactIcon}>
                 <img 
                     src="/images/location.svg"
                     alt="Инструменты"
-                    width={60}
-                    height={60}
+                    width={16}
+                    height={23}
                     className={styles.icon}
                 />
               </div>
@@ -105,8 +105,8 @@ const ContactSection: React.FC = () => {
                 <img 
                     src="/images/clock.svg"
                     alt="Инструменты"
-                    width={60}
-                    height={60}
+                    width={20}
+                    height={19}
                     className={styles.icon}
                 />
               </div>
