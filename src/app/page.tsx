@@ -16,6 +16,7 @@ import TestimonialsCarousel from "./components/TestimonialsCarousel/Testimonials
 import QuestionBlock from "./components/QuestionSection/QuestionSection";
 import TextBlock from "./components/TextBlock/TextBlock";
 import ContactSection from "./components/ContactSection/ContactSection";
+import Footer from "./components/FooterSection/Footer";
 
 export default function Home() {
   // Пример SEO-текста для компонента TextBlock
@@ -49,6 +50,7 @@ export default function Home() {
           content={seoText}
         />
         <ContactSection />
+        <Footer />
       </main>
     </div>
   );
