@@ -768,7 +768,7 @@
 }
 /* Дополнительные стили только для мобильных устройств (480px и меньше) */
 /* Дополнительные стили только для мобильных устройств (480px и меньше) */
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .testimonials {
     padding: 30px 0;
   }
@@ -919,7 +919,7 @@
 }
 
 /* Специальные настройки для 320px */
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   .testimonials {
     padding: 60px 0;
   }

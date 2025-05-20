@@ -140,7 +140,7 @@
 
 /* Добавьте эти стили в конец файла StatisticsSection.module.css */
 
-@media (max-width: 375px) {
+@media (max-width: 576px) {
   .section {
     height: 629px;
     padding: 0;
@@ -256,7 +256,7 @@
 }
 
 /* Специальные стили для ширины 320px */
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   .section {
     height: 629px;
   }

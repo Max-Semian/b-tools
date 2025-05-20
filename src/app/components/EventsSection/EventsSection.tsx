@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { getImagePath } from '@/app/utils/paths.js';
 import styles from './EventsSection.module.css';
 import Image from 'next/image';
 
 const EventsSection: React.FC = () => {
-  // Добавляем состояние для отслеживания ширины окна
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
-  const isMobile = windowWidth <= 320;
+  // Используем null для начального состояния ширины окна
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
+  // Вычисляем isMobile только если windowWidth доступен
+  const isMobile = windowWidth !== null && windowWidth <= 320;
 
   // Данные о событиях с разными размерами
   const events = [
@@ -35,22 +35,6 @@ const EventsSection: React.FC = () => {
       text: 'Lorem ipsum is simply dummy text',
       aspectRatio: '1/1',
       width: 350
-    },
-    {
-      id: 4,
-      image: 'images/eventSection-1.jpg',
-      alt: 'Деловая встреча',
-      text: 'Lorem ipsum is simply dummy text',
-      aspectRatio: '3/4',
-      width: 300
-    },
-    {
-      id: 5,
-      image: 'images/eventSection-2.jpg', 
-      alt: 'Корпоративное обучение',
-      text: 'Lorem ipsum is simply dummy text',
-      aspectRatio: '16/10',
-      width: 420
     }
   ];
 
@@ -62,8 +46,11 @@ const EventsSection: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   
-  // Эффект для отслеживания изменения ширины окна
+  // Эффект для установки ширины окна после монтирования компонента
   useEffect(() => {
+    // Устанавливаем размер окна только на клиенте
+    setWindowWidth(window.innerWidth);
+    
     const handleResizeWindow = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -74,10 +61,10 @@ const EventsSection: React.FC = () => {
     };
   }, []);
   
-  // Модифицируйте функцию updateOffset в компоненте
+  // Функция для расчета смещения
   const updateOffset = (index: number) => {
-    // На мобильных устройствах отключаем расчет offset
-    if (isMobile) return;
+    // Не выполняем расчеты, если размер окна не определен или это мобильное устройство
+    if (windowWidth === null || isMobile) return;
     
     if (!carouselRef.current || !trackRef.current) return;
     
@@ -87,10 +74,11 @@ const EventsSection: React.FC = () => {
     // Получаем ширину контейнера
     const containerWidth = carouselRef.current.clientWidth;
     
-    // Стандартный расчет для десктопа
+    // Находим карточку, которую нужно отобразить
     const card = cards[index] as HTMLElement;
     if (!card) return;
     
+    // Рассчитываем смещение, чтобы центрировать карточку
     const cardLeft = card.offsetLeft;
     const cardWidth = card.offsetWidth;
     const centerOffset = cardLeft - (containerWidth / 2) + (cardWidth / 2);
@@ -98,27 +86,29 @@ const EventsSection: React.FC = () => {
     setOffset(centerOffset);
   };
   
-  // Рассчитываем начальные размеры и устанавливаем обработчики
+  // Обновляем размеры при монтировании и изменении окна
   useEffect(() => {
+    // Выполняем только после определения размера окна
+    if (windowWidth === null) return;
+    
     if (!carouselRef.current) return;
     
-    // Следим за изменением размера окна
     const handleResize = () => {
       updateOffset(currentIndex);
     };
     
     window.addEventListener('resize', handleResize);
-    handleResize(); // Первоначальный расчет
+    
+    // Используем setTimeout для первого расчета, чтобы дать DOM время на рендеринг
+    const timeoutId = setTimeout(() => {
+      updateOffset(currentIndex);
+    }, 0);
     
     return () => {
       window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
     };
-  }, [currentIndex]); // Добавляем currentIndex в зависимости
-  
-  // Обновляем отступ при изменении текущего индекса
-  useEffect(() => {
-    updateOffset(currentIndex);
-  }, [currentIndex]);
+  }, [currentIndex, windowWidth]); // Добавляем windowWidth в зависимости
   
   // Обработчик для перемещения влево
   const prevSlide = () => {
@@ -158,6 +148,7 @@ const EventsSection: React.FC = () => {
     setCurrentIndex(index);
   };
   
+  // Используем стабильную структуру DOM для гидратации
   return (
     <section className={styles.eventsSection}>
       <div className={styles.container}>
@@ -171,39 +162,41 @@ const EventsSection: React.FC = () => {
         </div>
 
         <div className={styles.carouselContainer}>
-          {!isMobile && (
-            <button 
-              className={`${styles.navButton} ${styles.prevButton}`} 
-              onClick={prevSlide}
-              aria-label="Предыдущие события"
-            >
-              &lt;
-            </button>
-          )}
+          {/* Всегда рендерим кнопку, но скрываем через CSS для мобильных */}
+          <button 
+            className={`${styles.navButton} ${styles.prevButton} ${isMobile ? styles.hiddenButton : ''}`} 
+            onClick={prevSlide}
+            aria-label="Предыдущие события"
+          >
+            &lt;
+          </button>
 
           <div className={styles.carousel} ref={carouselRef}>
             <div 
               className={styles.carouselTrack} 
               ref={trackRef}
-              style={isMobile ? {} : { 
-                transform: `translateX(-${offset}px)`,
+              style={{
+                transform: windowWidth === null || isMobile ? 'none' : `translateX(-${offset}px)`,
                 transition: 'transform 0.5s ease-in-out'
               }}
             >
-              {/* На мобильных показываем только первые 3 события */}
-              {(isMobile ? events.slice(0, 3) : allItems).map((event, index) => (
+              {/* Показываем все карточки независимо от устройства для стабильной гидратации */}
+              {/* Потом скрываем лишние через CSS */}
+              {allItems.map((event, index) => (
                 <div 
                   key={`${event.id}-${index}`} 
-                  className={`${styles.eventCard} ${currentIndex === index ? styles.activeCard : ''}`}
-                  style={isMobile ? {} : {
-                    width: `${event.width}px`,
+                  className={`${styles.eventCard} ${currentIndex === index ? styles.activeCard : ''} ${isMobile && index >= 3 ? styles.hiddenCard : ''}`}
+                  style={{
+                    width: windowWidth === null ? undefined : isMobile ? '100%' : `${event.width}px`,
                     flexShrink: 0,
                     flexGrow: 0
                   }}
                 >
                   <div 
                     className={styles.imageContainer}
-                    style={isMobile ? { aspectRatio: '16/9' } : { aspectRatio: event.aspectRatio }}
+                    style={{
+                      aspectRatio: windowWidth === null ? undefined : isMobile ? '16/9' : event.aspectRatio
+                    }}
                   >
                     <Image
                       src={event.image}
@@ -218,15 +211,14 @@ const EventsSection: React.FC = () => {
             </div>
           </div>
 
-          {!isMobile && (
-            <button 
-              className={`${styles.navButton} ${styles.nextButton}`} 
-              onClick={nextSlide}
-              aria-label="Следующие события"
-            >
-              &gt;
-            </button>
-          )}
+          {/* Всегда рендерим кнопку, но скрываем через CSS для мобильных */}
+          <button 
+            className={`${styles.navButton} ${styles.nextButton} ${isMobile ? styles.hiddenButton : ''}`} 
+            onClick={nextSlide}
+            aria-label="Следующие события"
+          >
+            &gt;
+          </button>
         </div>
       </div>
     </section>

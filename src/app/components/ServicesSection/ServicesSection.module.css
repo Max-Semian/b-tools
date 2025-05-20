@@ -174,7 +174,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .container {
     padding: 0 9px;
   }
@@ -183,7 +183,7 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   .servicesSection {
     padding: 0;
   

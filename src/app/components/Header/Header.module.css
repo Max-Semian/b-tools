@@ -296,7 +296,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 576px) {
   .header {
     height: 70px; /* Еще меньше на маленьких экранах */
   }
@@ -320,7 +320,7 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   .logo {
     margin-left: -12px !important;
   }

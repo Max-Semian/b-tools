@@ -196,11 +196,6 @@
   .contentWrapper {
     padding: 15px;
   }
-
-  .imageWrapper {
-    width: 200px;
-    height: 320px;
-  }
   
   .title {
     font-size: 24px;
@@ -239,11 +234,6 @@
     flex-direction: row;
     gap: 5px;
   }
-}
-
-
-/* Специальные стили для экранов шириной 320px */
-@media (max-width: 375px) {
   /* Уменьшаем размер изображений, чтобы они поместились в ширину экрана */
   .section{
     padding: 0;

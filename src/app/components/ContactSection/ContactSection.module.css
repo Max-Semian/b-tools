@@ -229,7 +229,7 @@
 }
 
 /* Стили для мобильных устройств (320px) */
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   .contactSection {
     padding: 20px 0;
     background-color: #f9f9f9;
