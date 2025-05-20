@@ -175,6 +175,10 @@
 }
 
 @media (max-width: 576px) {
+  .teamSection {
+    padding-top: 60px;
+    padding-bottom: 0;
+  }
   .teamGrid {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -185,6 +189,37 @@
   }
   
   .quoteText {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .quoteText {
+    font-size: 14px;
+    text-align: center; 
+  }
+  
+  .quote {
+    text-align: center; 
+    padding: 0 15px; /* Добавляем отступы с обеих сторон */
+  }
+  
+  .quoteAuthor {
+    gap: 8px;
+    justify-content: flex-start; /* Выравнивание по левому краю */
+    margin-left: auto; /* Сдвигает весь блок вправо */
+    margin-right: 15px; /* Добавляем отступ справа */
+    width: auto; /* Автоматическая ширина блока */
+  }
+  .authorInfo{
+    padding: 0;
+  }
+  .ctaButton {
+    padding: 22px 90px;
     font-size: 16px;
   }
 }

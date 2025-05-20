@@ -344,20 +344,29 @@
 }
 
 @media (max-width: 375px) {
+  .consultationSection {
+    padding: 0;
+  }
   .title {
-    font-size: 20px;
+    font-size: 22px;
+    margin: 0;
   }
   
   .formCard {
     padding: 15px;
+    border-radius: 20px;
   }
-  
+  .featuresBlock {
+    margin-top: 0;
+  }
   .featuresTitle {
     font-size: 16px;
+    margin-top: 20px;
   }
   
   .featureItem {
     padding: 5px 10px;
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 400;
   }
 }

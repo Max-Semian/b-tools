@@ -6,6 +6,10 @@ import styles from './EventsSection.module.css';
 import Image from 'next/image';
 
 const EventsSection: React.FC = () => {
+  // Добавляем состояние для отслеживания ширины окна
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const isMobile = windowWidth <= 320;
+
   // Данные о событиях с разными размерами
   const events = [
     {
@@ -58,8 +62,23 @@ const EventsSection: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   
-  // Функция для расчета смещения
+  // Эффект для отслеживания изменения ширины окна
+  useEffect(() => {
+    const handleResizeWindow = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResizeWindow);
+    return () => {
+      window.removeEventListener('resize', handleResizeWindow);
+    };
+  }, []);
+  
+  // Модифицируйте функцию updateOffset в компоненте
   const updateOffset = (index: number) => {
+    // На мобильных устройствах отключаем расчет offset
+    if (isMobile) return;
+    
     if (!carouselRef.current || !trackRef.current) return;
     
     const cards = trackRef.current.querySelectorAll(`.${styles.eventCard}`);
@@ -68,11 +87,10 @@ const EventsSection: React.FC = () => {
     // Получаем ширину контейнера
     const containerWidth = carouselRef.current.clientWidth;
     
-    // Находим карточку, которую нужно отобразить
+    // Стандартный расчет для десктопа
     const card = cards[index] as HTMLElement;
     if (!card) return;
     
-    // Рассчитываем смещение, чтобы центрировать карточку
     const cardLeft = card.offsetLeft;
     const cardWidth = card.offsetWidth;
     const centerOffset = cardLeft - (containerWidth / 2) + (cardWidth / 2);
@@ -153,28 +171,31 @@ const EventsSection: React.FC = () => {
         </div>
 
         <div className={styles.carouselContainer}>
-          <button 
-            className={`${styles.navButton} ${styles.prevButton}`} 
-            onClick={prevSlide}
-            aria-label="Предыдущие события"
-          >
-            &lt;
-          </button>
+          {!isMobile && (
+            <button 
+              className={`${styles.navButton} ${styles.prevButton}`} 
+              onClick={prevSlide}
+              aria-label="Предыдущие события"
+            >
+              &lt;
+            </button>
+          )}
 
           <div className={styles.carousel} ref={carouselRef}>
             <div 
               className={styles.carouselTrack} 
               ref={trackRef}
-              style={{ 
+              style={isMobile ? {} : { 
                 transform: `translateX(-${offset}px)`,
                 transition: 'transform 0.5s ease-in-out'
               }}
             >
-              {allItems.map((event, index) => (
+              {/* На мобильных показываем только первые 3 события */}
+              {(isMobile ? events.slice(0, 3) : allItems).map((event, index) => (
                 <div 
                   key={`${event.id}-${index}`} 
                   className={`${styles.eventCard} ${currentIndex === index ? styles.activeCard : ''}`}
-                  style={{
+                  style={isMobile ? {} : {
                     width: `${event.width}px`,
                     flexShrink: 0,
                     flexGrow: 0
@@ -182,7 +203,7 @@ const EventsSection: React.FC = () => {
                 >
                   <div 
                     className={styles.imageContainer}
-                    style={{ aspectRatio: event.aspectRatio }}
+                    style={isMobile ? { aspectRatio: '16/9' } : { aspectRatio: event.aspectRatio }}
                   >
                     <Image
                       src={event.image}
@@ -197,13 +218,15 @@ const EventsSection: React.FC = () => {
             </div>
           </div>
 
-          <button 
-            className={`${styles.navButton} ${styles.nextButton}`} 
-            onClick={nextSlide}
-            aria-label="Следующие события"
-          >
-            &gt;
-          </button>
+          {!isMobile && (
+            <button 
+              className={`${styles.navButton} ${styles.nextButton}`} 
+              onClick={nextSlide}
+              aria-label="Следующие события"
+            >
+              &gt;
+            </button>
+          )}
         </div>
       </div>
     </section>

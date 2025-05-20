@@ -142,3 +142,129 @@
     min-width: 250px;
   }
 }
+
+@media (max-width: 576px) {
+  .eventsSection {
+    padding: 60px 0;
+  }
+  
+  .header {
+    margin-bottom: 25px;
+  }
+  
+  .title {
+    font-size: 22px;
+  }
+  
+  .eventIcon {
+    width: 70px;
+    height: 40px;
+    margin-left: 15px;
+  }
+  
+  .carouselContainer {
+    padding: 0 15px;
+  }
+  
+  .carouselTrack {
+    gap: 15px;
+  }
+  
+  .eventCard {
+    width: 280px !important; /* Переопределяем ширину для всех карточек */
+    flex-shrink: 0;
+  }
+  
+  .eventText {
+    padding: 12px 5px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .eventsSection {
+    padding: 40px 0 20px;
+  }
+  
+  .container {
+    width: 100%;
+    padding: 0 15px;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  
+  .eventIcon {
+    width: 50px;
+    height: 30px;
+    margin-left: 10px;
+  }
+  
+  /* Преобразуем карусель в вертикальный список */
+  .carouselContainer {
+    display: block;
+    padding: 0;
+  }
+  
+  .carousel {
+    width: 100%;
+    overflow: visible;
+  }
+  
+  .carouselTrack {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100% !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* Стилизация карточек событий */
+  .eventCard {
+    width: 100% !important;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  .imageContainer {
+    border-radius: 10px;
+    position: relative;
+    width: 100% !important;
+  }
+  
+  /* Добавляем иконку воспроизведения для первой карточки (видео) */
+  .eventCard:first-child .imageContainer::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(228, 0, 43, 0.8);
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+  }
+  
+  .eventText {
+    padding: 10px 5px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #343434;
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.3;
+  }
+}

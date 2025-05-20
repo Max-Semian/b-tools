@@ -423,72 +423,272 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+
+  .toolsSection {
+    padding: 60px 0;
+  }
+  /* Основной контейнер */
   .toolsGrid {
-    grid-template-columns: 1fr;
+    display: block !important;
+    width: 100% !important;
   }
-
-  .bitrix {
-    grid-column: 1;
-    grid-row: 1;
-    height: auto;
-    padding: 30px 20px;
+  
+  /* Основные большие карточки */
+  .toolsGrid > div:not(.bottomRow) {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+    float: none !important;
   }
-
-  .kommo {
-    grid-column: 1;
-    grid-row: 2;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .zadarma {
-    grid-column: 1;
-    grid-row: 3;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .albato {
-    grid-column: 1;
-    grid-row: 4;
-  }
-
-  .keepincrm {
-    grid-column: 1;
-    grid-row: 5;
-  }
-
+  
+  /* Контейнер для маленьких карточек */
   .bottomRow {
-    grid-column: 1;
-    grid-row: 6;
-    grid-template-columns: 1fr;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin: 0 !important;
   }
-
-  .keycrm, .perfectum, .onebox, .zoho {
-    grid-column: 1;
-    width: 100%;
+  
+  /* Маленькие карточки */
+  .bottomRow > div {
+    flex: 0 0 calc(50% - 5px) !important;
+    width: calc(50% - 5px) !important;
+    min-height: 120px !important;
+    margin: 0 !important;
   }
+}
 
+@media (max-width: 480px) {
+
+  .container {
+    padding: 0 10px;
+  }
+  
+  .header {
+    margin-bottom: 10px;
+  }
+  
   .title {
-    font-size: 28px;
+    font-size: 22px;
+    margin-right: 5px;
   }
-
+  
+  .circleIcon {
+    width: 60px;
+    height: 40px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+  
+  /* Reset grid layout for mobile */
+  .toolsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Reset all width constraints */
+  .bitrix, .kommo, .zadarma, .albato, .keepincrm,
+  .keycrm, .perfectum, .onebox, .zoho {
+    width: 100%;
+    height: auto;
+    min-height: 120px;
+  }
+  
+  /* Ensure spacing for description text */
+  .toolCard {
+    height: auto;
+    min-height: 120px;
+    padding: 15px;
+    margin-bottom: 0;
+  }
+  
+  /* Bitrix card */
+  .bitrix {
+    padding: 20px 15px;
+  }
+  
+  .bitrix .logoImage {
+    width: 150px !important;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+  
+  .bitrix .toolDescription {
+    font-size: 14px;
+    margin: 15px 0;
+  }
+  
+  .bitrix .detailButton {
+    padding: 12px 25px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  /* Kommo and Zadarma cards */
+  .kommo, .zadarma {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+  
   .kommo .toolLogo, .zadarma .toolLogo {
     width: auto;
-    margin-right: 0;
-    margin-bottom: 15px;
+    height: auto;
+    margin: 0 0 15px 0;
   }
-
+  
+  .kommo .logoImage, .zadarma .logoImage {
+    width: 150px;
+    height: auto;
+  }
+  
   .kommo .toolContent, .zadarma .toolContent {
+    padding-left: 0;
     align-items: center;
   }
-
+  
   .kommo .toolName, .zadarma .toolName {
+    font-size: 18px;
     text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  .kommo .toolDescription, .zadarma .toolDescription {
+    font-size: 14px;
+    margin-top: 0;
+    text-align: center;
+  }
+  
+  .kommo .detailButton {
+    padding: 12px 25px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  /* Adjust the bottom row and small cards to show 2 cards per row */
+  .bottomRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  /* Explicitly set small cards to display 2 in a row */
+  .albato, .keepincrm, .keycrm, .perfectum, .onebox, .zoho {
+    padding: 15px;
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Override any float or positioning that might interfere */
+  .toolsGrid > div:not(.bottomRow) {
+    width: 100%;
+    float: none;
+  }
+  
+  .toolLogo {
+    margin-bottom: 10px;
+  }
+  
+  .toolName {
+    font-size: 18px;
+    margin-top: 5px;
+  }
+}
+@media (max-width: 320px) {
+  .bitrix .detailButton {
+    padding: 11px 84px;
+  }
+  .bitrix .logoImage {
+    width: 95px !important;
+  }
+   .kommo {
+    background-color: #EBEAEA !important;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+  
+  /* Контейнер для логотипа и названия */
+  .kommo .headerContainer {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+  
+  /* Логотип Kommo */
+  .kommo .toolLogo {
+    width: auto !important;
+    height: auto !important;
+    margin: 0 15px 0 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+  
+  .kommo .logoImage {
+    width: 76px !important;
+    object-fit: contain !important;
+  }
+  
+  /* Название карточки */
+  .kommo .toolName {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: #333 !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  
+  /* Контейнер с контентом */
+  .kommo .toolContent {
+    width: 100% !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+  
+  /* Описание карточки */
+  .kommo .toolDescription {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    color: #666 !important;
+    margin: 0 0 20px 0 !important;
+    text-align: left !important;
+  }
+  
+  /* Кнопка Подробнее */
+  .kommo .detailButton {
+    background-color: #2B2D43 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    padding: 12px 0 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border: none !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    text-align: center !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+  .zadarma .logoImage {
+    width: 78px !important;
+  }
+  .zoho .logoImage {
+    width: 87px;
   }
 }

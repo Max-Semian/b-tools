@@ -1,11 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { getImagePath } from '@/app/utils/paths.js';
 import styles from './ToolsSection.module.css';
 
 const ToolsSection: React.FC = () => {
+  // State to track window width for responsive layout
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Update layout based on window size
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 480);
+    };
+    
+    // Set initial state
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Данные об инструментах с обновленными изображениями
   const tools = [
     {
@@ -91,29 +109,169 @@ const ToolsSection: React.FC = () => {
     }
   ];
 
-  return (
-  <section className={styles.toolsSection} id="tools">
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>ИНСТРУМЕНТЫ</h2>
-        <div className={styles.circleIcon}>
-          <img 
-            src="images/tools.png"
-            alt="Инструменты"
-            width={102}
-            height={56}
-            className={styles.icon}
-          />
+  // For mobile view, reorder tools according to the specified sequence
+  // First 3 cards in a single row each, then small cards in 2x2 grid
+  const renderMobileLayout = () => {
+    return (
+      <>
+        {/* First three cards in a single column */}
+        <div className={`${styles.toolCard} ${styles.bitrix}`}>
+          <div className={styles.toolLogo}>
+            <Image 
+              src={tools[0].logo}
+              alt={tools[0].name}
+              width={150}
+              height={120}
+              className={styles.logoImage}
+            />
+          </div>
+          {tools[0].description && (
+            <p className={styles.toolDescription}>{tools[0].description}</p>
+          )}
+          {tools[0].hasButton && (
+            <button className={styles.detailButton}>Подробнее</button>
+          )}
         </div>
-      </div>
-      
-      <p className={styles.subtitle}>
-        Мы помогаем подключать инструменты, которые делают продажи системными
-      </p>
-      
-      <div className={styles.toolsGrid}>
+        
+        {/* Kommo */}
+        <div className={`${styles.toolCard} ${styles.kommo}`}>
+          {/* Новый контейнер для логотипа и названия */}
+          <div className={styles.headerContainer}>
+            <div className={styles.toolLogo}>
+              <Image 
+                src={tools[1].logo}
+                alt={tools[1].name}
+                width={isMobile ? 76 : 211}
+                height={isMobile ? 57 : 158}
+                className={styles.logoImage}
+              />
+            </div>
+            <h3 className={styles.toolName}>{tools[1].name}</h3>
+          </div>
+          
+          {/* Описание и кнопка */}
+          <div className={styles.toolContent}>
+            {tools[1].description && (
+              <p className={styles.toolDescription}>{tools[1].description}</p>
+            )}
+            
+            {tools[1].hasButton && (
+              <button className={styles.detailButton}>Подробнее</button>
+            )}
+          </div>
+        </div>
+        
+        <div className={`${styles.toolCard} ${styles.zadarma}`}>
+          <div className={styles.toolLogo}>
+            <Image 
+              src={tools[3].logo}
+              alt={tools[3].name}
+              width={110}
+              height={110}
+              className={styles.logoImage}
+            />
+          </div>
+          <div className={styles.toolContent}>
+            <h3 className={styles.toolName}>{tools[3].name}</h3>
+            {tools[3].description && (
+              <p className={styles.toolDescription}>{tools[3].description}</p>
+            )}
+          </div>
+        </div>
+        
+        {/* Small cards in 2x2 grid layout */}
+        <div className={styles.bottomRow}>
+          {/* Row 1: Albato + KeepinCRM */}
+          <div className={`${styles.toolCard} ${styles.albato}`}>
+            <div className={styles.toolLogo}>
+              <Image 
+                src={tools[2].logo}
+                alt={tools[2].name}
+                width={60}
+                height={60}
+                className={styles.logoImage}
+              />
+            </div>
+            <h3 className={styles.toolName}>{tools[2].name}</h3>
+          </div>
+          
+          <div className={`${styles.toolCard} ${styles.keepincrm}`}>
+            <div className={styles.toolLogo}>
+              <Image 
+                src={tools[4].logo}
+                alt={tools[4].name}
+                width={60}
+                height={60}
+                className={styles.logoImage}
+              />
+            </div>
+            <h3 className={styles.toolName}>{tools[4].name}</h3>
+          </div>
+          
+          {/* Row 2: KeyCRM + Perfectum */}
+          <div className={`${styles.toolCard} ${styles.keycrm}`}>
+            <div className={styles.toolLogo}>
+              <Image 
+                src={tools[5].logo}
+                alt={tools[5].name}
+                width={60}
+                height={60}
+                className={styles.logoImage}
+              />
+            </div>
+            <h3 className={styles.toolName}>{tools[5].name}</h3>
+          </div>
+          
+          <div className={`${styles.toolCard} ${styles.perfectum}`}>
+            <div className={styles.toolLogo}>
+              <Image 
+                src={tools[6].logo}
+                alt={tools[6].name}
+                width={60}
+                height={60}
+                className={styles.logoImage}
+              />
+            </div>
+            <h3 className={styles.toolName}>{tools[6].name}</h3>
+          </div>
+          
+          {/* Row 3: OneBox + ZOHO CRM */}
+          <div className={`${styles.toolCard} ${styles.onebox}`}>
+            <div className={styles.toolLogo}>
+              <Image 
+                src={tools[7].logo}
+                alt={tools[7].name}
+                width={60}
+                height={60}
+                className={styles.logoImage}
+              />
+            </div>
+            <h3 className={styles.toolName}>{tools[7].name}</h3>
+          </div>
+          
+          <div className={`${styles.toolCard} ${styles.zoho}`}>
+            <div className={styles.toolLogo}>
+              <Image 
+                src={tools[8].logo}
+                alt={tools[8].name}
+                width={60}
+                height={60}
+                className={styles.logoImage}
+              />
+            </div>
+            <h3 className={styles.toolName}>{tools[8].name}</h3>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  // For desktop view, keep original layout
+  const renderDesktopLayout = () => {
+    return (
+      <>
         {/* Bitrix 24 */}
-        <div key={tools[0].id} className={`${styles.toolCard} ${styles.bitrix}`}>
+        <div className={`${styles.toolCard} ${styles.bitrix}`}>
           <div className={styles.toolLogo}>
             <Image 
               src={tools[0].logo}
@@ -134,7 +292,7 @@ const ToolsSection: React.FC = () => {
         </div>
         
         {/* Kommo */}
-        <div key={tools[1].id} className={`${styles.toolCard} ${styles.kommo}`}>
+        <div className={`${styles.toolCard} ${styles.kommo}`}>
           <div className={styles.toolLogo}>
             <Image 
               src={tools[1].logo}
@@ -158,7 +316,7 @@ const ToolsSection: React.FC = () => {
         </div>
         
         {/* Albato */}
-        <div key={tools[2].id} className={`${styles.toolCard} ${styles.albato}`}>
+        <div className={`${styles.toolCard} ${styles.albato}`}>
           <div className={styles.toolLogo}>
             <Image 
               src={tools[2].logo}
@@ -173,7 +331,7 @@ const ToolsSection: React.FC = () => {
         </div>
         
         {/* Zadarma */}
-        <div key={tools[3].id} className={`${styles.toolCard} ${styles.zadarma}`}>
+        <div className={`${styles.toolCard} ${styles.zadarma}`}>
           <div className={styles.toolLogo}>
             <Image 
               src={tools[3].logo}
@@ -193,7 +351,7 @@ const ToolsSection: React.FC = () => {
         </div>
         
         {/* KeepinCRM */}
-        <div key={tools[4].id} className={`${styles.toolCard} ${styles.keepincrm}`}>
+        <div className={`${styles.toolCard} ${styles.keepincrm}`}>
           <div className={styles.toolLogo}>
             <Image 
               src={tools[4].logo}
@@ -210,7 +368,7 @@ const ToolsSection: React.FC = () => {
         {/* Нижний ряд карточек */}
         <div className={styles.bottomRow}>
           {/* KeyCRM */}
-          <div key={tools[5].id} className={`${styles.toolCard} ${styles.keycrm}`}>
+          <div className={`${styles.toolCard} ${styles.keycrm}`}>
             <div className={styles.toolLogo}>
               <Image 
                 src={tools[5].logo}
@@ -225,7 +383,7 @@ const ToolsSection: React.FC = () => {
           </div>
           
           {/* Perfectum */}
-          <div key={tools[6].id} className={`${styles.toolCard} ${styles.perfectum}`}>
+          <div className={`${styles.toolCard} ${styles.perfectum}`}>
             <div className={styles.toolLogo}>
               <Image 
                 src={tools[6].logo}
@@ -240,7 +398,7 @@ const ToolsSection: React.FC = () => {
           </div>
           
           {/* OneBox */}
-          <div key={tools[7].id} className={`${styles.toolCard} ${styles.onebox}`}>
+          <div className={`${styles.toolCard} ${styles.onebox}`}>
             <div className={styles.toolLogo}>
               <Image 
                 src={tools[7].logo}
@@ -255,7 +413,7 @@ const ToolsSection: React.FC = () => {
           </div>
           
           {/* ZOHO CRM */}
-          <div key={tools[8].id} className={`${styles.toolCard} ${styles.zoho}`}>
+          <div className={`${styles.toolCard} ${styles.zoho}`}>
             <div className={styles.toolLogo}>
               <Image 
                 src={tools[8].logo}
@@ -269,10 +427,36 @@ const ToolsSection: React.FC = () => {
             <h3 className={styles.toolName}>{tools[8].name}</h3>
           </div>
         </div>
+      </>
+    );
+  };
+
+  return (
+    <section className={styles.toolsSection} id="tools">
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h2 className={styles.title}>ИНСТРУМЕНТЫ</h2>
+          <div className={styles.circleIcon}>
+            <img 
+              src="images/tools.png"
+              alt="Инструменты"
+              width={isMobile ? 60 : 102}
+              height={isMobile ? 33 : 56}
+              className={styles.icon}
+            />
+          </div>
+        </div>
+        
+        <p className={styles.subtitle}>
+          Мы помогаем подключать инструменты, которые делают продажи системными
+        </p>
+        
+        <div className={styles.toolsGrid}>
+          {isMobile ? renderMobileLayout() : renderDesktopLayout()}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
 };
 
 export default ToolsSection;

@@ -122,10 +122,29 @@
 
 @media (max-width: 480px) {
   .guaranteesSection {
-    padding: 50px 0;
+    padding: 60px 0;
   }
   
   .videoContainer {
     border-radius: 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .header {
+  display: flex;
+  align-items: center;
+  }
+  .title {
+    font-size: 22px;
+    text-align: center;
+  }
+  .subtitle {
+    font-size: 14px;
+    text-align: center;
+  }
+  .videoContainer {
+    padding-bottom: 90%; /* 1:1 соотношение сторон (квадрат) */
+    border-radius: 20px; /* Опционально: можно уменьшить радиус скругления для мобильных */
   }
 }

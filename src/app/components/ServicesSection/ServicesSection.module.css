@@ -179,3 +179,28 @@
     font-size: 28px;
   }
 }
+
+@media (max-width: 320px) {
+  .servicesSection {
+    padding: 0;
+  
+  }
+  .title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .serviceTitle {
+    font-size: 18px;
+  }
+  .serviceDescription {
+    font-size: 14px;
+  }
+  .serviceContent {
+    padding: 0 20px 20px 20px;
+  }
+  .detailButton {
+    padding: 22px 41px;
+    font-size: 16px;
+    margin-right: 25px;
+  }
+}
