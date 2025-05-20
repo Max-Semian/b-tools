@@ -59,10 +59,21 @@
   flex-shrink: 0;
 }
 
+/* Стиль для неактивной иконки - делаем фон прозрачным */
+.inactiveIcon {
+  background-color: transparent;
+  color: #E4002B;
+}
+
 .iconNumber {
   color: #fff;
   font-size: 14px;
   font-weight: 600;
+}
+
+/* Меняем цвет цифр в неактивной иконке */
+.inactiveIcon .iconNumber {
+  color: #E4002B;
 }
 
 .serviceTitle {
@@ -86,6 +97,7 @@
   color: #666;
   transform: translateY(-2px);
 }
+
 .serviceContent {
   padding: 0 20px 20px 67px;
   animation: fadeIn 0.3s ease;
@@ -99,9 +111,9 @@
   font-size: 16px;
   line-height: 1.6;
   color: #666;
-  margin-bottom: 0; /* Убираем нижний отступ */
-  flex: 1; /* Занимает доступное пространство */
-  margin-right: 20px; /* Отступ от кнопки */
+  margin-bottom: 0;
+  flex: 1;
+  margin-right: 20px;
 }
 
 .detailButton {
@@ -120,7 +132,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0; /* Предотвращает сжатие кнопки */
+  flex-shrink: 0;
 }
 
 .detailButton:hover {
@@ -154,11 +166,11 @@
   
   .serviceDescription {
     margin-right: 0;
-    margin-bottom: 20px; /* Возвращаем отступ на мобильных */
+    margin-bottom: 20px;
     width: 100%;
   }
   .detailButton {
-    align-self: flex-end; /* Выравниваем кнопку справа на мобильных */
+    align-self: flex-end;
   }
 }
 

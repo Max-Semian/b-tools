@@ -54,7 +54,7 @@
   height: 100%;
   background-color: #fff;
   border-radius: 8px;
-  padding: 25px 30px 30px;
+  padding: 10px 30px 30px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
@@ -100,7 +100,7 @@
 .cardList {
   list-style-type: none;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
 }
 
 .cardList li {
@@ -134,13 +134,14 @@
   border-radius: 8px;
   padding: 12px 0;
   width: 388px;
-  height: 64px;
+  min-height: 64px !important;
   text-align: center;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: auto;
 }
+
 
 .cardButton:hover {
   background-color: #3a3c57;

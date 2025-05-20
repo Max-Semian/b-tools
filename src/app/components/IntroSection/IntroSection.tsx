@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, TouchEvent } from 'react';
 import Image from 'next/image';
-import { getImagePath } from '@/app/utils/paths.js';
 import styles from './IntroSection.module.css';
 
-const IntroSection = () => {
+const IntroSection: React.FC = () => {
   // Массив карточек
   const cards = [
     {
@@ -33,7 +32,7 @@ const IntroSection = () => {
     },
     {
       id: 3,
-      icon: "building_5_line.svg",
+      icon: "images/building_5_line.svg",
       title: "Зрелая компания с отделом продаж",
       label: "ЧП",
       list: [
@@ -70,6 +69,16 @@ const IntroSection = () => {
   const [transition, setTransition] = useState(true);
   // Состояние для количества видимых карточек
   const [visibleCards, setVisibleCards] = useState(4);
+  // Состояние для обработки свайпа
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  // Для обработки прокрутки колесом и тачпадом
+  const [lastWheelTime, setLastWheelTime] = useState(0);
+  const wheelThreshold = 100; // Время в мс для предотвращения многократного срабатывания
+  const wheelDistance = 60; // Необходимое расстояние прокрутки для смены слайда
+  const wheelDeltaTotal = useRef(0); // Сохраняем общее расстояние прокрутки
+  // Минимальное расстояние свайпа для перелистывания карточки
+  const minSwipeDistance = 50;
   
   // Ссылка на контейнер карусели
   const carouselRef = useRef<HTMLDivElement | null>(null);
@@ -136,13 +145,131 @@ const IntroSection = () => {
     setCurrentIndex(prev => prev - 1);
   };
   
+// Создаем ссылку на функцию-обработчик
+const handleWheelRef = useRef<EventListener | null>(null);
+
+// В эффекте сохраняем ссылку на функцию
+useEffect(() => {
+  const currentCarousel = carouselRef.current;
+  
+  if (!currentCarousel) return;
+  
+  // Сохраняем значения в переменные
+  const threshold = wheelThreshold;
+  const distance = wheelDistance;
+  const deltaRef = wheelDeltaTotal;
+  
+  // Создаем и сохраняем функцию обработчика
+  const handleWheel = ((e: WheelEvent) => {
+    const now = new Date().getTime();
+    
+    // Накапливаем дельту прокрутки
+    deltaRef.current += e.deltaX;
+    
+    if (Math.abs(deltaRef.current) > distance && 
+        now - lastWheelTime > threshold) {
+      
+      if (deltaRef.current > 0) {
+        nextCard();
+      } else {
+        prevCard();
+      }
+      
+      deltaRef.current = 0;
+      setLastWheelTime(now);
+    }
+    
+    if (now - lastWheelTime > 500) {
+      deltaRef.current = 0;
+    }
+  }) as EventListener;
+  
+  // Сохраняем ссылку для использования при удалении
+  handleWheelRef.current = handleWheel;
+  
+  // Добавляем обработчик с одинарным приведением типа
+currentCarousel.addEventListener('wheel', handleWheel, { passive: false });
+  
+  return () => {
+    if (currentCarousel && handleWheelRef.current) {
+      currentCarousel.removeEventListener('wheel', handleWheelRef.current, {
+        passive: false
+      } as AddEventListenerOptions);
+    }
+  };
+}, [lastWheelTime, nextCard, prevCard]);
+  
+  // Обработчики свайпа на тачскрине
+  const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(null); // Сбросим позицию конца свайпа
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  
+  const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    // Если был достаточно сильный свайп влево, переходим к следующей карточке
+    if (isLeftSwipe) {
+      nextCard();
+    }
+    // Если был достаточно сильный свайп вправо, переходим к предыдущей карточке
+    if (isRightSwipe) {
+      prevCard();
+    }
+  };
+  
   // Авто-прокрутка каждые 5 секунд
   useEffect(() => {
     const interval = setInterval(() => {
       nextCard();
     }, 5000);
     
-    return () => clearInterval(interval);
+    // Остановим автоматическую прокрутку при взаимодействии пользователя
+    const carouselElement = carouselRef.current;
+    
+    const stopAutoScroll = () => {
+      clearInterval(interval);
+    };
+    
+    if (carouselElement) {
+      carouselElement.addEventListener('mouseenter', stopAutoScroll);
+      carouselElement.addEventListener('touchstart', stopAutoScroll);
+      carouselElement.addEventListener('wheel', stopAutoScroll);
+    }
+    
+    return () => {
+      clearInterval(interval);
+      if (carouselElement) {
+        carouselElement.removeEventListener('mouseenter', stopAutoScroll);
+        carouselElement.removeEventListener('touchstart', stopAutoScroll);
+        carouselElement.removeEventListener('wheel', stopAutoScroll);
+      }
+    };
+  }, [currentIndex]);
+  
+  // Добавляем ключевые обработчики на уровне окна для надежности
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        prevCard();
+      } else if (e.key === 'ArrowRight') {
+        nextCard();
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
   
   return (
@@ -157,6 +284,9 @@ const IntroSection = () => {
           className={styles.carouselContainer}
           ref={carouselRef}
           id="intro-carousel"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         >
           <div 
             className={styles.carouselTrack}
@@ -202,6 +332,7 @@ const IntroSection = () => {
             ))}
           </div>
         </div>
+        
       </div>
     </section>
   );
