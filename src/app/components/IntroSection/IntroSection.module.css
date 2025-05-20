@@ -294,7 +294,7 @@
     padding: 0;
     margin: 0 -10px;
   }
-  
+
   
   .carouselItem {
     width: 100%; /* Каждый слайд занимает всю ширину */
@@ -303,7 +303,7 @@
   }
   
   .card {
-    height: 405px;
+    height: 405;
     border-radius: 20px;
     padding: 20px 20px;
     margin-left: 20px;

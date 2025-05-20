@@ -276,7 +276,7 @@
 
 @media (max-width: 576px) {
   .questionBlock {
-    padding: 30px 15px;
+    padding: 20px 9px;
   }
   
   .container {
@@ -341,11 +341,20 @@
   }
   
   .imageCircle1, .imageCircle2 {
-    width: 125px;
-    height: 125px;
+    width: 130px;
+    height: 185px;
   }
   
   .submitButton {
     font-size: 14px;
+  }
+  .textContent {
+    margin-bottom: 30px;
+  }
+  .imageContent {
+    margin-top: 0;
+  }
+  .imageWrapper {
+    margin-top: 0;
   }
 }

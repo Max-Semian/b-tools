@@ -500,7 +500,7 @@
 /* Малые ноутбуки (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .testimonials {
-    padding: 80px 0;
+    padding: 60px 0;
   }
   
   .container {
@@ -774,27 +774,25 @@
   }
   
   .container {
-    padding: 0 10px;
+    padding: 0 9px;
   }
   
   .header {
-    margin-bottom: 15px;
+    flex-direction: column-reverse !important;
+    align-items: center !important;
+    gap: 15px !important;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   
+  /* Убираем боковой отступ у заголовка, который в десктопной версии
+     создавал пространство между заголовком и иконкой */
   .title {
-    font-size: 22px;
-    margin-right: 8px;
+    text-align: center;
+    margin-right: 0px !important;
+    margin-top: 8px !important;
   }
   
-  .redIcon {
-    width: 45px;
-    height: 24px;
-  }
-  
-  .redIcon img {
-    width: 100%;
-    height: auto;
-  }
   
   /* Настройки карусели и слайдов */
   .carouselContainer::before, 
@@ -923,16 +921,16 @@
 /* Специальные настройки для 320px */
 @media (max-width: 320px) {
   .testimonials {
-    padding: 20px 0;
+    padding: 60px 0;
   }
   
   .title {
-    font-size: 20px;
+    font-size: 22px;
   }
   
   .redIcon {
-    width: 40px;
-    height: 22px;
+    width: 66px;
+    height: 32px;
   }
   
   .testimonialCard {

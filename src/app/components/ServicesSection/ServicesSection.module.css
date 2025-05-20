@@ -175,6 +175,9 @@
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding: 0 9px;
+  }
   .title {
     font-size: 28px;
   }

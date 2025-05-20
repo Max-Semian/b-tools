@@ -7,7 +7,7 @@
   max-width: 1410px;
   min-height: 495px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 9px;
 }
 
 .formCard {
@@ -226,10 +226,6 @@
     align-items: center;
   }
   
-  .arrow {
-    display: none;
-  }
-  
   .imagesContainer {
     width: 80%;
     height: 300px;
@@ -315,8 +311,27 @@
     font-size: 18px;
   }
   
-  .imagesContainer {
-    height: auto;
+   .imagesContainer {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: row !important; /* Изменяем на горизонтальное расположение */
+    gap: 10px !important;
+    justify-content: space-between !important;
+    margin-bottom: 15px !important;
+  }
+  .personImage, 
+  .documentImage {
+    position: relative;
+    float: none;
+    width: 100%;
+    height: 200px;
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .documentImage {
+    height: 162px;
   }
   
   .personImage, .documentImage {
@@ -327,12 +342,8 @@
     margin: 0 0 15px 0;
   }
   
-  .documentImage {
-    height: 150px;
-  }
-  
   .submitButton {
-    font-size: 14px;
+    font-size: 16px;
     padding: 12px 15px;
     margin-top: 20px;
   }
@@ -368,5 +379,24 @@
     padding: 5px 10px;
     font-size: 10px;
     font-weight: 400;
+  }
+  .arrow {
+    transform: rotate(280deg) scaleX(-1);
+    right: 10px;
+    top: 60px;
+    width: 60px;
+    height: 45px;
+  }
+   .personImage, 
+  .documentImage {
+    position: static !important;
+    float: none !important;
+    width: calc(50% - 5px) !important; /* Ширина 50% с учетом отступа */
+    aspect-ratio: 1/1 !important; /* Делаем квадратными */
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+  .documentImage {
+    height: 156px;
   }
 }

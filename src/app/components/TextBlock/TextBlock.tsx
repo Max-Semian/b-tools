@@ -1,40 +1,53 @@
 'use client';
 
-import React from 'react';
-import { getImagePath } from '@/app/utils/paths.js';
+import React, { useState } from 'react';
 import styles from './TextBlock.module.css';
 
 interface TextBlockProps {
   title: string;
   content: string;
   buttonText?: string;
-  onButtonClick?: () => void;
+  maxHeight?: number;
   className?: string;
+  onButtonClick?: () => void;
 }
 
 const TextBlock: React.FC<TextBlockProps> = ({
   title,
   content,
-  buttonText,
-  onButtonClick,
+  buttonText = 'Подробнее',
+  maxHeight = 120,
   className = '',
+  onButtonClick,
 }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const handleToggle = () => {
+    if (onButtonClick) {
+      onButtonClick();
+    }
+    setExpanded(!expanded);
+  };
+
   return (
     <section className={`${styles.textBlock} ${className}`}>
       <div className={styles.container}>
         {title && <h2 className={styles.title}>{title}</h2>}
         
-        {content && (
-          <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }} />
-        )}
+        <div className={styles.contentWrapper}>
+          <div 
+            className={`${styles.content} ${!expanded ? styles.collapsed : ''}`} 
+            style={!expanded ? { maxHeight: `${maxHeight}px` } : {}}
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+          {!expanded && <div className={styles.fadeOverlay}></div>}
+        </div>
         
-        {buttonText && (
-          <div className={styles.buttonWrapper}>
-            <button className={styles.button} onClick={onButtonClick}>
-              {buttonText}
-            </button>
-          </div>
-        )}
+        <div className={styles.buttonWrapper}>
+          <button className={styles.button} onClick={handleToggle}>
+            {expanded ? 'Скрыть' : buttonText}
+          </button>
+        </div>
       </div>
     </section>
   );
