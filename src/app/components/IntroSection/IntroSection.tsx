@@ -37,8 +37,6 @@ const IntroSection: React.FC = () => {
       label: "ЧП",
       list: [
         "хочу увидеть точки роста продаж",
-        "хочу усилить команду продаж",
-        "нужно повысить конверсии лидов",
         "нужна автоматизация процессов",
         "нужно быстро масштабировать продажи"
       ],
@@ -79,7 +77,29 @@ const IntroSection: React.FC = () => {
   const wheelDeltaTotal = useRef(0); // Сохраняем общее расстояние прокрутки
   // Минимальное расстояние свайпа для перелистывания карточки
   const minSwipeDistance = 50;
+
+// Сюда добавьте новое состояние и эффект (после строки 82)
+// Состояние для отслеживания ширины окна
+const [windowWidth, setWindowWidth] = useState(0);
+
+// Эффект для определения ширины окна на клиенте
+useEffect(() => {
+  // Установка начального значения
+  setWindowWidth(window.innerWidth);
   
+  // Функция для обновления ширины
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  
+  // Добавление слушателя события
+  window.addEventListener('resize', handleResize);
+  
+  // Очистка слушателя
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, []);
   // Ссылка на контейнер карусели
   const carouselRef = useRef<HTMLDivElement | null>(null);
   
@@ -273,68 +293,99 @@ currentCarousel.addEventListener('wheel', handleWheel, { passive: false });
   }, []);
   
   return (
-    <section className={styles.section} id="intro-section">
-      <div className={styles.container}>
-        <div className={styles.titleContainer}>
-          <h2 className={styles.title}>ДАВАЙТЕ ПОЗНАКОМИМСЯ</h2>
-          <p className={styles.subtitle}>Какое утверждение больше подходит вашей компании?</p>
-        </div>
-        
-        <div 
-          className={styles.carouselContainer}
-          ref={carouselRef}
-          id="intro-carousel"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        >
-          <div 
-            className={styles.carouselTrack}
-            style={{ 
-              transform: `translateX(-${currentIndex * 460}px)`,
-              transition: transition ? 'transform 0.3s ease' : 'none'
-            }}
-          >
-            {allCards.map((card, index) => (
-              <div 
-                key={`${card.id}-${index}`} 
-                className={styles.carouselItem}
-                id={`card-${card.id}-${index}`}
-              >
-                <div className={`${styles.card} ${card.emergency ? styles.emergencyCard : ''}`}>
-                  <div className={styles.cardHeader}>
-                    <span className={styles.cardLabel}>{card.label}</span>
-                    <div className={styles.iconContainer}>
-                      <Image 
-                        src={card.icon} 
-                        alt={card.title} 
-                        width={24} 
-                        height={24} 
-                        className={styles.icon}
-                      />
-                    </div>
-                  </div>
-                  <h3 className={styles.cardTitle}>{card.title}</h3>
-                  <ul className={styles.cardList}>
-                    {card.list.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                  {card.note && <p className={styles.cardNote}>{card.note}</p>}
-                  <button 
-                    className={`${styles.cardButton} ${card.emergency ? styles.emergencyButton : ''}`}
-                    id={`card-button-${card.id}`}
-                  >
-                    Это про нас
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
+     <section className={styles.section} id="intro-section">
+    <div className={styles.container}>
+      <div className={styles.titleContainer}>
+        <h2 className={styles.title}>ДАВАЙТЕ ПОЗНАКОМИМСЯ</h2>
+        <p className={styles.subtitle}>Какое утверждение больше подходит вашей компании?</p>
       </div>
-    </section>
+      
+      <div 
+        className={styles.carouselContainer}
+        ref={carouselRef}
+        id="intro-carousel"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        <div 
+          className={styles.carouselTrack}
+          style={{ 
+           transform: windowWidth <= 320 
+            ? `translateX(-${currentIndex * 100}%)`
+            : `translateX(-${currentIndex * 460}px)`,
+            transition: transition ? 'transform 0.3s ease' : 'none'
+          }}
+        >
+          {allCards.map((card, index) => (
+            <div 
+              key={`${card.id}-${index}`} 
+              className={styles.carouselItem}
+              id={`card-${card.id}-${index}`}
+            >
+              <div className={`${styles.card} ${card.emergency ? styles.emergencyCard : ''}`}>
+                <div className={styles.cardHeader}>
+                  <span className={styles.cardLabel}>{card.label}</span>
+                  <div className={styles.iconContainer}>
+                    <Image 
+                      src={card.icon} 
+                      alt={card.title} 
+                      width={24} 
+                      height={24} 
+                      className={styles.icon}
+                    />
+                  </div>
+                </div>
+                <h3 className={styles.cardTitle}>{card.title}</h3>
+                <ul className={styles.cardList}>
+                  {card.list.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+                {card.note && <p className={styles.cardNote}>{card.note}</p>}
+                <button 
+                  className={`${styles.cardButton} ${card.emergency ? styles.emergencyButton : ''}`}
+                  id={`card-button-${card.id}`}
+                >
+                  Это про нас
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Добавляем навигацию карусели (видимую только на мобильных) */}
+      <div className={styles.navigation}>
+        <button 
+          className={styles.navButton} 
+          onClick={prevCard}
+          aria-label="Предыдущая карточка"
+        >
+          &lt;
+        </button>
+        
+        <div className={styles.dots}>
+          {cards.map((_, index) => (
+            <button
+              key={index}
+              className={`${styles.dot} ${currentIndex % cards.length === index ? styles.active : ''}`}
+              onClick={() => setCurrentIndex(index)}
+              aria-label={`Перейти к карточке ${index + 1}`}
+            />
+          ))}
+        </div>
+        
+        <button 
+          className={styles.navButton} 
+          onClick={nextCard}
+          aria-label="Следующая карточка"
+        >
+          &gt;
+        </button>
+      </div>
+    </div>
+  </section>
   );
 };
 

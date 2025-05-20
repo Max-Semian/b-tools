@@ -319,3 +319,12 @@
     height: 30px; /* Уменьшаем размер логотипа */
   }
 }
+
+@media (max-width: 320px) {
+  .logo {
+    margin-left: -12px !important;
+  }
+  .rightActions {
+    margin-right: -12px;
+  }
+}
