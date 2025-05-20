@@ -398,7 +398,7 @@
 }
 
 /* Специальные стили только для самых маленьких экранов */
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .section {
     padding: 40px 0;
   }

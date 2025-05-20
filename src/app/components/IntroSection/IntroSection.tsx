@@ -311,7 +311,7 @@ currentCarousel.addEventListener('wheel', handleWheel, { passive: false });
         <div 
           className={styles.carouselTrack}
           style={{ 
-           transform: windowWidth <= 320 
+           transform: windowWidth <= 375 
             ? `translateX(-${currentIndex * 100}%)`
             : `translateX(-${currentIndex * 460}px)`,
             transition: transition ? 'transform 0.3s ease' : 'none'

@@ -330,7 +330,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 375px) {
   .container {
     padding: 15px;
     border-radius: 12px;

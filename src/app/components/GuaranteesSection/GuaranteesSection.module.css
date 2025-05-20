@@ -130,7 +130,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .container {
     padding: 0 9px;
   }

@@ -181,7 +181,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .eventsSection {
     padding: 40px 0 20px;
   }

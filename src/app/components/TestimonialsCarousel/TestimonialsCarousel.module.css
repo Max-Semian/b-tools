@@ -919,7 +919,7 @@
 }
 
 /* Специальные настройки для 320px */
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .testimonials {
     padding: 60px 0;
   }

@@ -294,7 +294,7 @@
     border-radius: 17px !important;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   /* Скрываем все исходные элементы фона */
   .backgroundContainer,
   .heroSection_backgroundContainer,

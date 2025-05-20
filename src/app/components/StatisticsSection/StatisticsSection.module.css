@@ -256,7 +256,7 @@
 }
 
 /* Специальные стили для ширины 320px */
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .section {
     height: 629px;
   }

@@ -320,7 +320,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .logo {
     margin-left: -12px !important;
   }
