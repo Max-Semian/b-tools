@@ -1,391 +1,340 @@
 'use client';
 
-import React, { useState, useEffect, useRef, TouchEvent } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from './IntroSection.module.css';
 
-const IntroSection: React.FC = () => {
-  // Массив карточек
-  const cards = [
-    {
-      id: 1,
-      icon: "images/news_line.svg",
-      title: "Продающий эксперт",
-      label: "Новичок",
-      list: [
-        "хочу сам закрывать много сделок",
-        "хочу автоматизировать обработку чатов",
-      ],
-      note: "Разработаем стратегию, напишем скрипты продаж, проведем тренинги, подключим и обучим AI-ассистента"
-    },
-    {
-      id: 2,
-      icon: "images/briefcase_2_line.svg",
-      title: "Молодая компания",
-      label: "Босс",
-      list: [
-        "хочу делегировать продажи",
-        "хочу систематизировать процессы",
-        "нужна помощь в управлении отделом продаж"
-      ],
-      note: "Построим систему продаж под ключ, внедрим CRM, наймем сильных продавцов, а вас обучим техникам эффективного управления либо предоставим своего РОПа в аренду"
-    },
-    {
-      id: 3,
-      icon: "images/building_5_line.svg",
-      title: "Зрелая компания с отделом продаж",
-      label: "ЧП",
-      list: [
-        "хочу увидеть точки роста продаж",
-        "нужна автоматизация процессов",
-        "нужно быстро масштабировать продажи"
-      ],
-      note: "Проведем комплексный аудит и усилим систему продаж, добавим или заменим сотрудников, проведем тренинги и автоматизируем процессы"
-    },
-    {
-      id: 4,
-      icon: "images/building_5_line.svg",
-      title: "Нужна экстренная помощь!",
-      label: "ЧП",
-      list: [
-        "компания выходит на новый рынок",
-        "языковой барьер мешает масштабироваться",
-        "команда уходит на удаленку",
-        "экстренно изменился продукт"
-      ],
-      note: "",
-      emergency: true
-    }
-  ];
+const CARD_DATA = [
+  {
+    id: 1,
+    icon: "images/news_line.svg",
+    title: "Продающий эксперт",
+    label: "Новичок",
+    list: [
+      "хочу сам закрывать много сделок",
+      "хочу автоматизировать обработку чатов",
+    ],
+    note: "Разработаем стратегию, напишем скрипты продаж, проведем тренинги, подключим и обучим AI-ассистента"
+  },
+  {
+    id: 2,
+    icon: "images/briefcase_2_line.svg",
+    title: "Молодая компания",
+    label: "Босс",
+    list: [
+      "хочу делегировать продажи",
+      "хочу систематизировать процессы",
+      "нужна помощь в управлении отделом продаж"
+    ],
+    note: "Построим систему продаж под ключ, внедрим CRM, наймем сильных продавцов, а вас обучим техникам эффективного управления либо предоставим своего РОПа в аренду"
+  },
+  {
+    id: 3,
+    icon: "images/building_5_line.svg",
+    title: "Зрелая компания с отделом продаж",
+    label: "ЧП",
+    list: [
+      "хочу увидеть точки роста продаж",
+      "нужна автоматизация процессов",
+      "нужно быстро масштабировать продажи"
+    ],
+    note: "Проведем комплексный аудит и усилим систему продаж, добавим или заменим сотрудников, проведем тренинги и автоматизируем процессы"
+  },
+  {
+    id: 4,
+    icon: "images/building_5_line.svg",
+    title: "Нужна экстренная помощь!",
+    label: "ЧП",
+    list: [
+      "компания выходит на новый рынок",
+      "языковой барьер мешает масштабироваться",
+      "команда уходит на удаленку",
+      "экстренно изменился продукт"
+    ],
+    note: "",
+    emergency: true
+  }
+];
 
-  // Дублируем карточки для бесконечной карусели
-  const allCards = [...cards, ...cards];
-  
-  // Состояние для текущей карточки
+const IntroSection = () => {
+  // Основные состояния
   const [currentIndex, setCurrentIndex] = useState(0);
-  // Состояние для плавного перехода в CSS
   const [transition, setTransition] = useState(true);
-  // Состояние для количества видимых карточек
   const [visibleCards, setVisibleCards] = useState(4);
-  // Состояние для обработки свайпа
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  // Для обработки прокрутки колесом и тачпадом
-  const [lastWheelTime, setLastWheelTime] = useState(0);
-  const wheelThreshold = 100; // Время в мс для предотвращения многократного срабатывания
-  const wheelDistance = 60; // Необходимое расстояние прокрутки для смены слайда
-  const wheelDeltaTotal = useRef(0); // Сохраняем общее расстояние прокрутки
-  // Минимальное расстояние свайпа для перелистывания карточки
-  const minSwipeDistance = 50;
-
-// Сюда добавьте новое состояние и эффект (после строки 82)
-// Состояние для отслеживания ширины окна
-const [windowWidth, setWindowWidth] = useState(0);
-
-// Эффект для определения ширины окна на клиенте
-useEffect(() => {
-  // Установка начального значения
-  setWindowWidth(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
   
-  // Функция для обновления ширины
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
+  // Ссылки для работы с DOM и состояниями
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<number | null>(null);
+  const wheelDeltaRef = useRef(0);
+  const lastWheelTimeRef = useRef(0);
+  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Добавление слушателя события
-  window.addEventListener('resize', handleResize);
+  // Константы для настройки поведения
+  const WHEEL_THRESHOLD = 50; // мс для предотвращения множественных срабатываний
+  const WHEEL_DISTANCE = 40; // расстояние прокрутки для смены слайда
+  const SWIPE_THRESHOLD = 50; // минимальное расстояние свайпа
+  const AUTO_SCROLL_INTERVAL = 5000; // интервал автопрокрутки в мс
   
-  // Очистка слушателя
-  return () => {
-    window.removeEventListener('resize', handleResize);
-  };
-}, []);
-  // Ссылка на контейнер карусели
-  const carouselRef = useRef<HTMLDivElement | null>(null);
+  // Все карточки (дублируем для бесконечной карусели)
+  const allCards = [...CARD_DATA, ...CARD_DATA];
   
-  // Обновляем размеры при монтировании и изменении окна
+  // Инициализация и определение размеров
   useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    
     const updateDimensions = () => {
-      // Определяем количество видимых карточек в зависимости от ширины
-      if (window.innerWidth < 768) {
-        setVisibleCards(1);
-      } else if (window.innerWidth < 1024) {
-        setVisibleCards(2);
-      } else if (window.innerWidth < 1400) {
-        setVisibleCards(3);
-      } else {
-        setVisibleCards(4);
-      }
+      const width = window.innerWidth;
+      setWindowWidth(width);
+      
+      // Устанавливаем количество видимых карточек в зависимости от ширины экрана
+      if (width < 768) setVisibleCards(1);
+      else if (width < 1024) setVisibleCards(2);
+      else if (width < 1400) setVisibleCards(3);
+      else setVisibleCards(4);
     };
     
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
     
-    return () => {
-      window.removeEventListener('resize', updateDimensions);
-    };
+    return () => window.removeEventListener('resize', updateDimensions);
   }, []);
   
   // Логика для бесконечной карусели
   useEffect(() => {
-    // Если дошли до конца, перепрыгиваем к началу
-    if (currentIndex >= cards.length) {
-      setTimeout(() => {
+    if (currentIndex >= CARD_DATA.length) {
+      const timer = setTimeout(() => {
         setTransition(false);
-        setCurrentIndex(currentIndex - cards.length);
+        setCurrentIndex(currentIndex - CARD_DATA.length);
       }, 300);
+      return () => clearTimeout(timer);
     }
     
-    // Если дошли до начала, перепрыгиваем к концу
     if (currentIndex < 0) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setTransition(false);
-        setCurrentIndex(currentIndex + cards.length);
+        setCurrentIndex(currentIndex + CARD_DATA.length);
       }, 300);
+      return () => clearTimeout(timer);
     }
-  }, [currentIndex, cards.length]);
-  
-  // Включаем анимацию после смены позиции
-  useEffect(() => {
+    
+    // Включаем анимацию после смены позиции
     if (!transition) {
-      const timeout = setTimeout(() => {
-        setTransition(true);
-      }, 10);
-      
-      return () => clearTimeout(timeout);
+      const timer = setTimeout(() => setTransition(true), 10);
+      return () => clearTimeout(timer);
     }
-  }, [transition]);
+  }, [currentIndex, transition]);
   
-  // Перемещение карусели
-  const nextCard = () => {
-    setCurrentIndex(prev => prev + 1);
-  };
+  // Основные функции навигации
+  const nextCard = () => setCurrentIndex(prev => prev + 1);
+  const prevCard = () => setCurrentIndex(prev => prev - 1);
   
-  const prevCard = () => {
-    setCurrentIndex(prev => prev - 1);
-  };
-  
-// Создаем ссылку на функцию-обработчик
-const handleWheelRef = useRef<EventListener | null>(null);
-
-// В эффекте сохраняем ссылку на функцию
-useEffect(() => {
-  const currentCarousel = carouselRef.current;
-  
-  if (!currentCarousel) return;
-  
-  // Сохраняем значения в переменные
-  const threshold = wheelThreshold;
-  const distance = wheelDistance;
-  const deltaRef = wheelDeltaTotal;
-  
-  // Создаем и сохраняем функцию обработчика
-  const handleWheel = ((e: WheelEvent) => {
-    const now = new Date().getTime();
-    
-    // Накапливаем дельту прокрутки
-    deltaRef.current += e.deltaX;
-    
-    if (Math.abs(deltaRef.current) > distance && 
-        now - lastWheelTime > threshold) {
+  // Обработка колеса мыши и тачпада
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault(); // Предотвращаем стандартную прокрутку страницы
       
-      if (deltaRef.current > 0) {
+      const now = Date.now();
+      // Накапливаем дельту прокрутки для плавности
+      wheelDeltaRef.current += e.deltaX || e.deltaY;
+      
+      // Проверяем, достаточно ли времени прошло с последнего переключения
+      // и достаточное ли расстояние прокрутки накоплено
+      if (Math.abs(wheelDeltaRef.current) > WHEEL_DISTANCE && 
+          now - lastWheelTimeRef.current > WHEEL_THRESHOLD) {
+        
+        if (wheelDeltaRef.current > 0) {
+          nextCard();
+        } else {
+          prevCard();
+        }
+        
+        // Сбрасываем значения после переключения
+        wheelDeltaRef.current = 0;
+        lastWheelTimeRef.current = now;
+      }
+      
+      // Сбрасываем накопленную дельту, если прошло много времени без действий
+      if (now - lastWheelTimeRef.current > 500) {
+        wheelDeltaRef.current = 0;
+      }
+    };
+    
+    const carousel = carouselRef.current;
+    if (carousel) {
+      carousel.addEventListener('wheel', handleWheel, { passive: false });
+    }
+    
+    return () => {
+      if (carousel) {
+        carousel.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, []);
+  
+  // Обработчики touch-событий для мобильных устройств
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = e.touches[0].clientX;
+    
+    // Останавливаем автопрокрутку при взаимодействии пользователя
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+      autoScrollIntervalRef.current = null;
+    }
+  };
+  
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    
+    const touchEnd = e.touches[0].clientX;
+    const diff = touchStartRef.current - touchEnd;
+    
+    // Если свайп достаточно сильный, меняем слайд
+    if (Math.abs(diff) > SWIPE_THRESHOLD) {
+      if (diff > 0) {
         nextCard();
       } else {
         prevCard();
       }
-      
-      deltaRef.current = 0;
-      setLastWheelTime(now);
-    }
-    
-    if (now - lastWheelTime > 500) {
-      deltaRef.current = 0;
-    }
-  }) as EventListener;
-  
-  // Сохраняем ссылку для использования при удалении
-  handleWheelRef.current = handleWheel;
-  
-  // Добавляем обработчик с одинарным приведением типа
-currentCarousel.addEventListener('wheel', handleWheel, { passive: false });
-  
-  return () => {
-    if (currentCarousel && handleWheelRef.current) {
-      currentCarousel.removeEventListener('wheel', handleWheelRef.current, {
-        passive: false
-      } as AddEventListenerOptions);
-    }
-  };
-}, [lastWheelTime, nextCard, prevCard]);
-  
-  // Обработчики свайпа на тачскрине
-  const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
-    setTouchEnd(null); // Сбросим позицию конца свайпа
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-  
-  const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-  
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    
-    // Если был достаточно сильный свайп влево, переходим к следующей карточке
-    if (isLeftSwipe) {
-      nextCard();
-    }
-    // Если был достаточно сильный свайп вправо, переходим к предыдущей карточке
-    if (isRightSwipe) {
-      prevCard();
+      touchStartRef.current = null;
     }
   };
   
-  // Авто-прокрутка каждые 5 секунд
+  // Автопрокрутка
   useEffect(() => {
-    const interval = setInterval(() => {
+    // Запускаем автопрокрутку
+    autoScrollIntervalRef.current = setInterval(() => {
       nextCard();
-    }, 5000);
+    }, AUTO_SCROLL_INTERVAL);
     
-    // Остановим автоматическую прокрутку при взаимодействии пользователя
-    const carouselElement = carouselRef.current;
-    
+    // Останавливаем при взаимодействии пользователя
+    const carousel = carouselRef.current;
     const stopAutoScroll = () => {
-      clearInterval(interval);
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+        autoScrollIntervalRef.current = null;
+      }
     };
     
-    if (carouselElement) {
-      carouselElement.addEventListener('mouseenter', stopAutoScroll);
-      carouselElement.addEventListener('touchstart', stopAutoScroll);
-      carouselElement.addEventListener('wheel', stopAutoScroll);
+    if (carousel) {
+      carousel.addEventListener('mouseenter', stopAutoScroll);
+      carousel.addEventListener('touchstart', stopAutoScroll);
     }
     
+    // Очищаем интервал при размонтировании
     return () => {
-      clearInterval(interval);
-      if (carouselElement) {
-        carouselElement.removeEventListener('mouseenter', stopAutoScroll);
-        carouselElement.removeEventListener('touchstart', stopAutoScroll);
-        carouselElement.removeEventListener('wheel', stopAutoScroll);
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
       }
-    };
-  }, [currentIndex]);
-  
-  // Добавляем ключевые обработчики на уровне окна для надежности
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
-        prevCard();
-      } else if (e.key === 'ArrowRight') {
-        nextCard();
+      
+      if (carousel) {
+        carousel.removeEventListener('mouseenter', stopAutoScroll);
+        carousel.removeEventListener('touchstart', stopAutoScroll);
       }
-    };
-    
-    window.addEventListener('keydown', handleKeyDown);
-    
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
   
+  // Обработка кнопок клавиатуры
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') prevCard();
+      else if (e.key === 'ArrowRight') nextCard();
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+  
   return (
-     <section className={styles.section} id="intro-section">
-    <div className={styles.container}>
-      <div className={styles.titleContainer}>
-        <h2 className={styles.title}>ДАВАЙТЕ ПОЗНАКОМИМСЯ</h2>
-        <p className={styles.subtitle}>Какое утверждение больше подходит вашей компании?</p>
-      </div>
-      
-      <div 
-        className={styles.carouselContainer}
-        ref={carouselRef}
-        id="intro-carousel"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
+    <section className={styles.section} id="intro-section">
+      <div className={styles.container}>
+        <div className={styles.titleContainer}>
+          <h2 className={styles.title}>ДАВАЙТЕ ПОЗНАКОМИМСЯ</h2>
+          <p className={styles.subtitle}>Какое утверждение больше подходит вашей компании?</p>
+        </div>
+        
         <div 
-          className={styles.carouselTrack}
-          style={{ 
-           transform: windowWidth <= 480 
-            ? `translateX(-${currentIndex * 100}%)`
-            : `translateX(-${currentIndex * 460}px)`,
-            transition: transition ? 'transform 0.3s ease' : 'none'
-          }}
+          className={styles.carouselContainer}
+          ref={carouselRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
         >
-          {allCards.map((card, index) => (
-            <div 
-              key={`${card.id}-${index}`} 
-              className={styles.carouselItem}
-              id={`card-${card.id}-${index}`}
-            >
-              <div className={`${styles.card} ${card.emergency ? styles.emergencyCard : ''}`}>
-                <div className={styles.cardHeader}>
-                  <span className={styles.cardLabel}>{card.label}</span>
-                  <div className={styles.iconContainer}>
-                    <Image 
-                      src={card.icon} 
-                      alt={card.title} 
-                      width={24} 
-                      height={24} 
-                      className={styles.icon}
-                    />
+          <div 
+            className={styles.carouselTrack}
+            style={{ 
+              transform: windowWidth <= 480
+                ? `translateX(-${currentIndex * 100}%)`
+                : `translateX(-${currentIndex * 460}px)`,
+              transition: transition ? 'transform 0.3s ease' : 'none'
+            }}
+          >
+            {allCards.map((card, index) => (
+              <div 
+                key={`card-${card.id}-${index}`} 
+                className={styles.carouselItem}
+              >
+                <div className={`${styles.card} ${card.emergency ? styles.emergencyCard : ''}`}>
+                  <div className={styles.cardHeader}>
+                    <span className={styles.cardLabel}>{card.label}</span>
+                    <div className={styles.iconContainer}>
+                      <Image 
+                        src={card.icon} 
+                        alt={card.title} 
+                        width={24} 
+                        height={24} 
+                        className={styles.icon}
+                      />
+                    </div>
                   </div>
+                  <h3 className={styles.cardTitle}>{card.title}</h3>
+                  <ul className={styles.cardList}>
+                    {card.list.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                  {card.note && <p className={styles.cardNote}>{card.note}</p>}
+                  <button 
+                    className={`${styles.cardButton} ${card.emergency ? styles.emergencyButton : ''}`}
+                  >
+                    Это про нас
+                  </button>
                 </div>
-                <h3 className={styles.cardTitle}>{card.title}</h3>
-                <ul className={styles.cardList}>
-                  {card.list.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-                {card.note && <p className={styles.cardNote}>{card.note}</p>}
-                <button 
-                  className={`${styles.cardButton} ${card.emergency ? styles.emergencyButton : ''}`}
-                  id={`card-button-${card.id}`}
-                >
-                  Это про нас
-                </button>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      {/* Добавляем навигацию карусели (видимую только на мобильных) */}
-      <div className={styles.navigation}>
-        <button 
-          className={styles.navButton} 
-          onClick={prevCard}
-          aria-label="Предыдущая карточка"
-        >
-          &lt;
-        </button>
-        
-        <div className={styles.dots}>
-          {cards.map((_, index) => (
-            <button
-              key={index}
-              className={`${styles.dot} ${currentIndex % cards.length === index ? styles.active : ''}`}
-              onClick={() => setCurrentIndex(index)}
-              aria-label={`Перейти к карточке ${index + 1}`}
-            />
-          ))}
+            ))}
+          </div>
         </div>
         
-        <button 
-          className={styles.navButton} 
-          onClick={nextCard}
-          aria-label="Следующая карточка"
-        >
-          &gt;
-        </button>
+        {/* Навигация */}
+        <div className={styles.navigation}>
+          <button 
+            className={styles.navButton} 
+            onClick={prevCard}
+            aria-label="Предыдущая карточка"
+          >
+            &lt;
+          </button>
+          
+          <div className={styles.dots}>
+            {CARD_DATA.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.dot} ${currentIndex % CARD_DATA.length === index ? styles.active : ''}`}
+                onClick={() => setCurrentIndex(index)}
+                aria-label={`Перейти к карточке ${index + 1}`}
+              />
+            ))}
+          </div>
+          
+          <button 
+            className={styles.navButton} 
+            onClick={nextCard}
+            aria-label="Следующая карточка"
+          >
+            &gt;
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
 };
 
