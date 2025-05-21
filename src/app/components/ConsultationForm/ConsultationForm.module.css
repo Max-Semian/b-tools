@@ -319,28 +319,28 @@
     justify-content: space-between !important;
     margin-bottom: 15px !important;
   }
+
+  
   .personImage, 
   .documentImage {
     position: relative;
     float: none;
     width: 100%;
-    height: 200px;
     margin: 0;
     border-radius: 10px;
+    margin: 0 0 15px 0;
     overflow: hidden;
   }
   
-  .documentImage {
-    height: 162px;
+  .personImage {
+    float: left;
+    height: 391px;
   }
-  
-  .personImage, .documentImage {
-    position: relative;
-    float: none;
-    width: 100%;
-    height: 200px;
-    margin: 0 0 15px 0;
-  }
+
+   .documentImage {
+    float: right;
+    height: 322px;
+   }
   
   .submitButton {
     font-size: 16px;

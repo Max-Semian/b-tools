@@ -79,7 +79,7 @@ const ConsultationForm: React.FC = () => {
                   src="images/zayavka1.png"
                   alt="Документ"
                   width={235}
-                  height={304}
+                  height={322}
                   className={styles.docImg}
                 />
               </div>

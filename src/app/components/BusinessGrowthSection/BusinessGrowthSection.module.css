@@ -176,11 +176,15 @@
   .contentWrapper {
     padding: 25px;
   }
+   .imagesContainer {
+    flex-direction: row;
+    gap: 5px;
+  }
 
-  .imagesContainer {
+  /* .imagesContainer {
     flex-direction: column;
     align-items: center;
-  }
+  } */
   
   .imageWrapper {
     width: 240px;
@@ -241,8 +245,8 @@
     margin-top: 30px;
   }
   .imageWrapper {
-    width: 145px;
-    height: 240px;
+    width: 150px;
+    height: 305px;
   }
   
   /* Уменьшаем отступы контейнера */
@@ -275,9 +279,4 @@
     padding: 0 9px;
   }
   
-  /* Уменьшаем внешние отступы для контейнера изображений */
-  .imagesContainer {
-    margin: 0 auto;
-    max-width: 270px;
-  }
 }

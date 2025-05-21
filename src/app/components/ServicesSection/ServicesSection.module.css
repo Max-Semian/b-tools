@@ -181,6 +181,9 @@
   .title {
     font-size: 28px;
   }
+  .detailButton {
+    margin-right: 133px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -204,6 +207,6 @@
   .detailButton {
     padding: 22px 41px;
     font-size: 16px;
-    margin-right: 25px;
+    margin-right: 108px;
   }
 }

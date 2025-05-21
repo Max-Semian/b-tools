@@ -165,9 +165,13 @@
   .carouselContainer {
     padding: 0 15px;
   }
-  
   .carouselTrack {
+    display: flex;
+    flex-direction: column;
     gap: 15px;
+    width: 100% !important;
+    transform: none !important;
+    transition: none !important;
   }
   
   .eventCard {
@@ -216,15 +220,7 @@
     width: 100%;
     overflow: visible;
   }
-  
-  .carouselTrack {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100% !important;
-    transform: none !important;
-    transition: none !important;
-  }
+
   
   /* Стилизация карточек событий */
   .eventCard {
