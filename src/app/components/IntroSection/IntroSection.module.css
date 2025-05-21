@@ -65,18 +65,20 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 20px;
+  margin-top: 14px;
 }
 
 .cardLabel {
-  font-size: 12px;
-  color: #999;
+  /* margin-top: 26px; */
+  font-size: 14px;
+  color: #37373783;
   font-weight: 400;
 }
 
 .iconContainer {
   width: 80px;
   height: 80px;
-  background-color: #FF0033;
+  background-color: #E4002B;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -92,6 +94,7 @@
 
 .cardTitle {
   font-size: 28px;
+  width: 67%;
   font-weight: 500;
   color: #343434;
   margin: 0 0 20px 0;
@@ -107,9 +110,10 @@
   position: relative;
   padding-left: 15px;
   margin-bottom: 10px;
-  font-size: 14px;
-  color: #343434;
-  line-height: 1.5;
+  font-size: 16px;
+  font-weight: 500;
+  color: #343434bd;
+  line-height: 1.2;
 }
 
 .cardList li:before {
@@ -123,7 +127,7 @@
   font-size: 18px;
   font-weight: 500;
   color: #343434;
-  margin: 20px 0;
+  /* margin: 10px 0; */
   flex-grow: 1;
 }
 
@@ -149,7 +153,7 @@
 
 /* Стили для красной карточки экстренной помощи */
 .emergencyCard {
-  background-color: #FF0033;
+  background-color: #E4002B;
   color: white;
 }
 
@@ -167,7 +171,7 @@
 
 .emergencyButton {
   background-color: white !important;
-  color: #FF0033 !important;
+  color: #E4002B !important;
   border: none !important;
 }
 

@@ -6,7 +6,7 @@ import styles from './Footer.module.css';
 const Footer: React.FC = () => {
   // Данные для первой колонки (логотип)
   const logoData = {
-    src: "images/footer-logo.svg",
+    src: "images/logo-b-tools.png",
     alt: "B-Tools Logo",
     width: 224,
     height: 54

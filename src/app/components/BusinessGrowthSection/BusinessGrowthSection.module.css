@@ -48,7 +48,7 @@
 
 .textColumn {
   flex: 1;
-  max-width: 600px;
+  max-width: 620px;
 }
 
 .logo {
@@ -95,11 +95,11 @@
 }
 
 .ctaButton {
-  background-color: #FF0033;
+  background-color: #E4002B;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 14px 24px;
+  border-radius: 8px;
+  padding: 20px 41px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -119,11 +119,12 @@
 .imagesContainer {
   display: flex;
   gap: 20px;
+  flex: 0 0 40%;
 }
 
 .imageWrapper {
   width: 280px;
-  height: 450px;
+  height: 589px;
   position: relative;
   overflow: hidden;
 }
