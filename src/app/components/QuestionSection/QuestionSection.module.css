@@ -110,6 +110,11 @@
   border-radius: 50%;
 }
 
+.form .hvostik {
+  width: 26px;
+  margin-top: -29px;
+  margin-left: 282px;
+}
 /* Точки меню справа */
 .menuDots {
   display: flex;

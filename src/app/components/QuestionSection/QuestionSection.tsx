@@ -48,6 +48,15 @@ const QuestionBlock: React.FC = () => {
                         <span className={styles.dotItem}></span>
                     </div>
                 </div>
+                <div className={styles.hvostik}>
+                  <Image 
+                          src="images/hvostik.png"
+                          alt="Хвостик"
+                          width={3}
+                          height={38}
+                          style={{ width: '100%', height: 'auto', objectFit: 'cover',  }}
+                  />
+                </div>
                 <button type="submit" className={styles.submitButton}>
                   Связаться
                 </button>
