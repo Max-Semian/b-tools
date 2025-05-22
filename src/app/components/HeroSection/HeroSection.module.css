@@ -320,9 +320,9 @@
     position: relative !important;
     height: auto !important;
     min-height: 100vh !important;
-    background-image: url('/b-tools/images/hero-mobile.jpg') !important;
+    background-image: url('/b-tools/images/hero-mobile-edit2.JPG') !important;
     background-size: cover !important;
-    background-position: 70% 30% !important;
+    background-position: 50% 50% !important;
     background-repeat: no-repeat !important;
   }
   .container {
