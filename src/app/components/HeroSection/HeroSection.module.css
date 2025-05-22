@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/gilroy-bold');
+
 .heroSection {
   position: relative;
   width: 100%;
@@ -357,12 +359,20 @@
   }
 
   .title {
+    font-family: 'Gilroy-Bold';
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 15px;
+  }
+.highlight {
+  font-family: 'Gilroy-Bold';
     font-size: 32px;
     font-weight: 400;
     text-align: center;
     margin-bottom: 15px;
-  }
-
+}
   .contactText {
     font-size: 14px;
     font-weight: 400;
