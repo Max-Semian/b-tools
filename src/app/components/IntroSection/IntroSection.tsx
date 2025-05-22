@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -129,13 +130,30 @@ const IntroSection = () => {
   const nextCard = () => setCurrentIndex(prev => prev + 1);
   const prevCard = () => setCurrentIndex(prev => prev - 1);
   
-  // Обработка колеса мыши и тачпада
+  // Функция для определения типа устройства ввода
+  const isTouchDevice = () => {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  };
+  
+  // Обработка wheel событий (только для тачпадов, исключаем обычные мыши)
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      // Проверяем, что это тачпад, а не обычная мышь
+      // Тачпады обычно генерируют более плавные значения deltaY и deltaX
+      const isTouchpad = Math.abs(e.deltaY) < 50 && Math.abs(e.deltaX) > 0;
+      
+      // Также проверяем наличие горизонтальной прокрутки (характерно для тачпадов)
+      const hasHorizontalScroll = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+      
+      // Если это не тачпад, не обрабатываем событие
+      if (!isTouchpad && !hasHorizontalScroll) {
+        return;
+      }
+      
       e.preventDefault(); // Предотвращаем стандартную прокрутку страницы
       
       const now = Date.now();
-      // Накапливаем дельту прокрутки для плавности
+      // Накапливаем дельту прокрутки для плавности (используем deltaX для горизонтальной прокрутки)
       wheelDeltaRef.current += e.deltaX || e.deltaY;
       
       // Проверяем, достаточно ли времени прошло с последнего переключения
