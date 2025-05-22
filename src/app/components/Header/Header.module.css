@@ -6,7 +6,7 @@
   z-index: 1000;
   transition: all 0.3s ease;
   background-color: transparent;
-  height: 95px;
+  height: 6rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   box-sizing: border-box;
 }
@@ -43,7 +43,7 @@
 .desktopNav {
   display: flex;
   position: relative; /* Изменено с absolute на relative */
-  margin-left: 60px; /* Фиксированный отступ от логотипа */
+  margin-right: 60px; /* Фиксированный отступ от логотипа */
 }
 
 .desktopNav ul {
@@ -54,7 +54,7 @@
 }
 
 .desktopNav li {
-  margin: 0 30px 0 0;
+  margin: 0 40px 0 0;
 }
 
 .desktopNav li:last-child {
@@ -64,9 +64,9 @@
 .desktopNav a {
   color: white;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1em;
   font-family: var(--font-manrope);
-  font-weight: 500;
+  font-weight: 300;
   transition: color 0.3s ease;
   letter-spacing: 0.2px;
   white-space: nowrap; /* Предотвращает перенос текста */
@@ -88,7 +88,7 @@
   color: white;
   border: none;
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -191,19 +191,23 @@
 /* Медиа-запросы для адаптивности */
 @media (max-width: 1600px) {
   .logo {
-    margin-left: 120px !important; /* Уменьшаем отступ на средних экранах */
+    margin-left: 200px !important; /* Уменьшаем отступ на средних экранах */
   }
   
   .rightActions {
-    margin-right: 120px; /* Уменьшаем отступ справа */
+    margin-right: 200px; /* Уменьшаем отступ справа */
   }
   
   .desktopNav {
     margin-left: 40px; /* Уменьшаем отступ от логотипа */
   }
+
+  .desktopNav a {
+    font-size: 14px; /* Уменьшаем размер шрифта */
+  }
   
   .desktopNav li {
-    margin: 0 20px 0 0; /* Уменьшаем отступы между пунктами меню */
+    margin: 0 40px 0 0; /* Уменьшаем отступы между пунктами меню */
   }
 }
 
@@ -221,7 +225,7 @@
   }
   
   .desktopNav li {
-    margin: 0 15px 0 0;
+    margin: 0 40px 0 0;
   }
   
   .desktopNav a {
@@ -247,7 +251,7 @@
   }
   
   .desktopNav li {
-    margin: 0 10px 0 0;
+    margin: 0 40px 0 0;
   }
   
   .langButton {
