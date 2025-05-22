@@ -21,6 +21,7 @@
 
 .textContent {
   flex: 0 0 50%;
+  margin-left: -111px;
   max-width: 480px;
   position: relative;
 }
@@ -134,6 +135,7 @@
   padding: 12px 25px;
   font-size: 14px;
   font-weight: 500;
+  margin-top: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   align-self: flex-start;
@@ -221,6 +223,7 @@
     flex: 0 0 100%;
     max-width: 100%;
     margin-bottom: 40px;
+    margin-left: 0;
   }
   
   .title {
@@ -305,6 +308,7 @@
     padding: 12px 20px;
     border-radius: 8px;
     font-size: 16px;
+    margin-top: 0px;
   }
   
   .imageContent {
@@ -350,6 +354,7 @@
   }
   .textContent {
     margin-bottom: 30px;
+    max-width: 400px;
   }
   .imageContent {
     margin-top: 0;

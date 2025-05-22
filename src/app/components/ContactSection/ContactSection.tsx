@@ -16,6 +16,33 @@ const ContactSection = () => {
             <button className={styles.contactButton}>
               Связаться
             </button>
+            <div className={styles.locationInfo}>
+              <div className={styles.contactItem}>
+                <div className={styles.contactIcon}>
+                  <img 
+                    src="images/location.svg"
+                    alt="Локация"
+                    width={16}
+                    height={23}
+                    className={styles.icon}
+                  />
+                </div>
+                <span className={styles.contactText}>Адрес</span>
+              </div>
+              
+              <div className={styles.contactItem}>
+                <div className={styles.contactIcon}>
+                  <img 
+                    src="images/clock.svg"
+                    alt="Часы работы"
+                    width={20}
+                    height={19}
+                    className={styles.icon}
+                  />
+                </div>
+                <span className={styles.contactText}>pn-pt 09:00-18:00</span>
+              </div>
+            </div>
           </div>
           
           <div className={styles.contactInfo}>
@@ -83,34 +110,7 @@ const ContactSection = () => {
                 />
               </a>
             </div>
-            
-            <div className={styles.locationInfo}>
-              <div className={styles.contactItem}>
-                <div className={styles.contactIcon}>
-                  <img 
-                    src="images/location.svg"
-                    alt="Локация"
-                    width={16}
-                    height={23}
-                    className={styles.icon}
-                  />
-                </div>
-                <span className={styles.contactText}>Адрес</span>
-              </div>
-              
-              <div className={styles.contactItem}>
-                <div className={styles.contactIcon}>
-                  <img 
-                    src="images/clock.svg"
-                    alt="Часы работы"
-                    width={20}
-                    height={19}
-                    className={styles.icon}
-                  />
-                </div>
-                <span className={styles.contactText}>pn-pt 09:00-18:00</span>
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>

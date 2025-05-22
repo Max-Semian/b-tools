@@ -13,7 +13,7 @@
   font-size: 48px;
   font-weight: 500;
   color: #343434;
-  text-align: center;
+  text-align: start;
   margin-bottom: 30px;
   text-transform: uppercase;
 }
@@ -22,14 +22,16 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 60px;
+  gap: 200px;
 }
 
+/* ИЗМЕНЕНИЕ: Контактная информация теперь слева */
 .contactInfo {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  order: 1; /* Первый блок слева */
 }
 
 .contactItem {
@@ -59,7 +61,7 @@
 .socialLinks {
   display: flex;
   gap: 15px;
-  margin-top: 30px;
+  margin-top: 115px;
   margin-bottom: 30px;
 }
 
@@ -83,11 +85,14 @@
   height: 60px;
 }
 
+/* ИЗМЕНЕНИЕ: Форма теперь справа */
 .formContainer {
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin-top: -80px;
   align-items: flex-start;
+  order: 2; /* Второй блок справа */
 }
 
 .formTitle {
@@ -120,6 +125,7 @@
 .locationInfo {
   display: flex;
   flex-direction: column;
+  margin-top: 120px;
   gap: 20px;
 }
 
@@ -144,14 +150,15 @@
     gap: 40px;
   }
   
+  /* На планшетах и мобильных возвращаем порядок как был */
   .contactInfo {
     width: 100%;
-    order: 2;
+    order: 2; /* Контакты снизу на мобильных */
   }
   
   .formContainer {
     width: 100%;
-    order: 1;
+    order: 1; /* Форма сверху на мобильных */
   }
   
   .socialLinks {
@@ -226,9 +233,12 @@
     padding: 15px 25px;
     font-size: 14px;
   }
+  .locationInfo {
+    margin-top: 30px;
+  }
 }
 
-/* Стили для мобильных устройств (320px) */
+/* Стили для мобильных устройств */
 @media (max-width: 480px) {
   .contactSection {
     padding: 20px 0;
@@ -241,7 +251,7 @@
   
   .title {
     font-size: 22px;
-    margin-bottom: 20px;
+    margin-bottom: 115px;
     text-align: left;
   }
   
@@ -302,7 +312,7 @@
     justify-content: space-between;
   }
   
-    .socialLink svg,
+  .socialLink svg,
   .socialLink img {
     width: 60px !important;
     height: 60px !important;
