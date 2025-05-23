@@ -65,7 +65,7 @@ const ToolsSection: React.FC = () => {
     {
       id: 5,
       name: 'KeepinCRM',
-      logo: 'images/keepincrm.svg', // Красный логотип
+      logo: 'images/keepincrm.png', // Красный логотип
       description: '',
       isFeatured: true,
       hasButton: false,

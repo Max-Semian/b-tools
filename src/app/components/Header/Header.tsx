@@ -67,10 +67,11 @@ const Header = () => {
       document.body.style.overflow = 'auto';
     }
 
-    document.addEventListener('mousedown', handleClickOutside);
+    // document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
     
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
       document.body.style.overflow = 'auto'; // Reset on unmount
     };
   }, [mobileMenuOpen]);
